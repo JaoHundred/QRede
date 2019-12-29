@@ -14,7 +14,8 @@ namespace QRede.Modules
     {
         public HomeViewModel()
         {
-            LoadTask =LoadAsync();
+            //ToDo Descomentar quando o método estiver implementado
+            //LoadTask =LoadAsync();
             GenerateQRCodeCommand = new Command(OnGenerateQRCode);            
         }
 
