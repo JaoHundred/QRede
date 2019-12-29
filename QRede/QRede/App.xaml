@@ -6,6 +6,10 @@
              mc:Ignorable="d"
              x:Class="QRede.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="24"/>       
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

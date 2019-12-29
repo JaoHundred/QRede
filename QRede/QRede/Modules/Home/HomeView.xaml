@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="QRede.Modules.HomeView">
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="ImagePlaceHolder.png"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="SSID:"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Status:"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Status}"/>
+        </Grid>
+        <Button Grid.Row="2" Text="Gerar Código QR" Command="{Binding GenerateQRCodeCommand}"/>
+    </Grid>
+</ContentPage>
