@@ -10,9 +10,16 @@ namespace QRede.Model
     {
         public WifiSummary(string wifiName)
         {
-            SSID = wifiName;
+            if (string.IsNullOrEmpty(wifiName))
+                WifiState = WifiState.Disabled;
+            else
+            {
+                SSID = wifiName;
+                WifiState = WifiState.Enabled;
+            }
         }
 
         public string SSID { get; set; }
+        public WifiState WifiState { get; set; }
     }
 }

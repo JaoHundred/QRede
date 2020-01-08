@@ -7,6 +7,6 @@ namespace QRede.Interfaces
 {
     public interface IConnectivityService
     {
-        WifiSummary GetCurrentWifi();
+        WifiSummary GetCurrentWifiName();
     }
 }

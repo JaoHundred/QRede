@@ -21,14 +21,43 @@ namespace QRede.Droid.Services
 {
     public class ConnectivityService : IConnectivityService
     {
-        public WifiSummary GetCurrentWifi()
+        public WifiSummary GetCurrentWifiName()
         {
-            var androidWifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
-            string wifiName = androidWifiManager.ConnectionInfo.SSID;
-            //androidWifiManager.ConnectionInfo.
-            
+            string ssid = "";
+            WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
+            WifiInfo info = wifiManager.ConnectionInfo;
+            int networkId = info.NetworkId;
 
-            return new WifiSummary(wifiName);
+            IList<WifiConfiguration> netConfList = wifiManager.ConfiguredNetworks;
+
+            foreach (WifiConfiguration wificonf in netConfList)
+            {
+                if (wificonf.NetworkId == networkId)
+                {
+                    ssid = wificonf.Ssid;
+                    break;
+                }
+
+            }
+
+            string wifiName = FormatSSid(ssid);
+            return new WifiSummary(wifiName); // "\"formatoPadrão\""
+        }
+
+        private string FormatSSid(string ssid)
+        {
+            char[] charToRemove = { (char)92, (char)34 }; // 92 = \   34 = "
+            var builder = new StringBuilder();
+
+            for (int i = 0; i < ssid.Length; i++)
+            {
+                char ch = ssid[i];
+
+                if(!charToRemove.Contains(ch))
+                    builder.Append(ch);
+            }
+
+            return builder.ToString();
         }
     }
 }
