@@ -51,9 +51,18 @@ namespace QRede.Modules
             //ToDo fazer a ligação com o serviço de geração de código QR
 
             var connectivityAndroid = DependencyService.Get<IConnectivityService>();
-            WifiSummary wifiSummary = connectivityAndroid.GetCurrentWifi();
+            WifiSummary wifiSummary = connectivityAndroid.GetCurrentWifiName();
 
-            Name = wifiSummary.SSID;
+            if (wifiSummary.WifiState == WifiState.Enabled)
+            {
+                Name = wifiSummary.SSID;
+                Status = "Conectado";
+            }
+            else
+            {
+                Name = "Nome não encontrado";
+                Status = "Desconectado";
+            }
         }
     }
 }
