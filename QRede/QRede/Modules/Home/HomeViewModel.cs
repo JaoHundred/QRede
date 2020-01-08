@@ -8,6 +8,7 @@ using Plugin.Connectivity;
 using QRede.Interfaces;
 using QRede.Model;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace QRede.Modules
 {
