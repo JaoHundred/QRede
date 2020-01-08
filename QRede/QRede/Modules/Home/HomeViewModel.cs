@@ -6,17 +6,18 @@ using System.Windows.Input;
 using MvvmHelpers;
 using Plugin.Connectivity;
 using QRede.Interfaces;
+using QRede.Model;
 using Xamarin.Forms;
 
 namespace QRede.Modules
 {
-    public class HomeViewModel:BaseViewModel,IAsyncInitialization
+    public class HomeViewModel : BaseViewModel, IAsyncInitialization
     {
         public HomeViewModel()
         {
             //ToDo Descomentar quando o método estiver implementado
             //LoadTask =LoadAsync();
-            GenerateQRCodeCommand = new Command(OnGenerateQRCode);            
+            GenerateQRCodeCommand = new Command(OnGenerateQRCode);
         }
 
         public Task LoadTask { get; }
@@ -48,6 +49,11 @@ namespace QRede.Modules
         private void OnGenerateQRCode()
         {
             //ToDo fazer a ligação com o serviço de geração de código QR
-        }               
+
+            var connectivityAndroid = DependencyService.Get<IConnectivityService>();
+            WifiSummary wifiSummary = connectivityAndroid.GetCurrentWifi();
+
+            Name = wifiSummary.SSID;
+        }
     }
 }
