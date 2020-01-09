@@ -18,6 +18,7 @@ namespace QRede.Modules
         {
             //ToDo Descomentar quando o método estiver implementado
             //LoadTask =LoadAsync();
+            LoadWifiCaracteristics();
             GenerateQRCodeCommand = new Command(OnGenerateQRCode);
         }
 
@@ -42,6 +43,15 @@ namespace QRede.Modules
             get { return status; }
             set { SetProperty(ref status, value); }
         }
+
+        private string imagePath;
+
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set { SetProperty(ref imagePath, value); }
+        }
+
         #endregion
 
         public ICommand GenerateQRCodeCommand
@@ -50,7 +60,11 @@ namespace QRede.Modules
         private void OnGenerateQRCode()
         {
             //ToDo fazer a ligação com o serviço de geração de código QR
+            LoadWifiCaracteristics();
+        }
 
+        private void LoadWifiCaracteristics()
+        {
             var connectivityAndroid = DependencyService.Get<IConnectivityService>();
             WifiSummary wifiSummary = connectivityAndroid.GetCurrentWifiName();
 
@@ -58,11 +72,13 @@ namespace QRede.Modules
             {
                 Name = wifiSummary.SSID;
                 Status = "Conectado";
+                ImagePath = "WiFiFull.png";
             }
             else
             {
                 Name = "Nome não encontrado";
                 Status = "Desconectado";
+                ImagePath = "WiFiDisconected.png";
             }
         }
     }
