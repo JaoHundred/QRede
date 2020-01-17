@@ -3,15 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:QRede.Modules"
+             xmlns:conv="clr-namespace:QRede.Converters"
              mc:Ignorable="d"
-             x:Class="QRede.Modules.HomeView">
+             x:Class="QRede.Modules.HomeView"
+             x:DataType="vm:HomeViewModel">
+
+    <ContentPage.Resources>
+        <conv:EmptyStringToIsVisibleConverter x:Key="StringToIsVisible"/>
+    </ContentPage.Resources>
+
     <Grid Padding="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Source="{Binding ImagePath}"/>
+        <Grid Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Source="{Binding WifiSummary.ImagePath}"/>
+            <Image Grid.Row="1" Source="{Binding ImageSource}"/>
+        </Grid>
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -23,12 +39,14 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Text="SSID:"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SSID}" />
             <Label Grid.Row="1" Grid.Column="0" Text="Status:"/>
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Status}"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding WifiSummary.WifiState}"/>
             <Label Grid.Row="2" Grid.Column="0" Text="Senha:"/>
-            <Entry Grid.Row="2" Grid.Column="1"/>
+            <Entry Grid.Row="2" Grid.Column="1" IsPassword="True" 
+                   Text="{Binding WifiSummary.Password, Mode=TwoWay}"/>
         </Grid>
-        <Button Grid.Row="2" Text="Gerar Código QR" Command="{Binding GenerateQRCodeCommand}"/>
+        <Button Grid.Row="2" Text="Gerar Código QR" Command="{Binding GenerateQRCodeCommand}"
+                IsEnabled="{Binding SSID, Converter={StaticResource StringToIsVisible}}"/>
     </Grid>
 </ContentPage>

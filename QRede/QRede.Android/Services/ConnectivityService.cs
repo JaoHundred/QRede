@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Text;
 
 using Android.App;
@@ -21,7 +22,7 @@ namespace QRede.Droid.Services
 {
     public class ConnectivityService : IConnectivityService
     {
-        public WifiSummary GetCurrentWifiName()
+        public string GetCurrentWifiName()
         {
             string ssid = "";
             WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
@@ -40,8 +41,7 @@ namespace QRede.Droid.Services
 
             }
 
-            string wifiName = FormatSSid(ssid);
-            return new WifiSummary(wifiName); // "\"formatoPadrão\""
+            return FormatSSid(ssid);// "\"formatoPadrão\""
         }
 
         private string FormatSSid(string ssid)

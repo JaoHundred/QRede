@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,6 +10,8 @@ using QRede.Interfaces;
 using QRede.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
+using QRede.Services;
+using magno = MvvmHelpers.Commands;
 
 namespace QRede.Modules
 {
@@ -17,69 +20,65 @@ namespace QRede.Modules
         public HomeViewModel()
         {
             //ToDo Descomentar quando o método estiver implementado
-            //LoadTask =LoadAsync();
-            LoadWifiCaracteristics();
-            GenerateQRCodeCommand = new Command(OnGenerateQRCode);
+            WifiSummary = new WifiSummary();
+            LoadTask = LoadAsync();
+            GenerateQRCodeCommand = new magno.AsyncCommand(OnGenerateQRCode);
         }
 
         public Task LoadTask { get; }
-        public Task LoadAsync()
+        public async Task LoadAsync()
         {
-            //ToDo Implementar checador periodico de rede  
-            throw new NotImplementedException();
+            await Task.Run(() =>
+            {
+                Device.StartTimer(TimeSpan.FromSeconds(2), () =>
+                {
+                    var connectivityAndroid = DependencyService.Get<IConnectivityService>();
+                    WifiSummary.SSID = SSID = connectivityAndroid.GetCurrentWifiName();
+
+                    if (string.IsNullOrEmpty(SSID))
+                    {
+                        WifiSummary.WifiState = "Desconectado";
+                        WifiSummary.ImagePath = "WiFiDisconected.png";
+                    }
+                    else
+                    {
+                        WifiSummary.WifiState = "Conectado";
+                        WifiSummary.ImagePath = "WiFiFull.png";
+                    }
+
+                    return true;
+                });
+            });
         }
 
         #region Property's
-        private string name;
-        public string Name
+        private WifiSummary wifiSummary;
+        public WifiSummary WifiSummary
         {
-            get { return name; }
-            set { SetProperty(ref name, value); }
+            get { return wifiSummary; }
+            set { wifiSummary = value; }
         }
 
-        private string status;
-        public string Status
+        private string sSID;
+        public string SSID
         {
-            get { return status; }
-            set { SetProperty(ref status, value); }
+            get { return sSID; }
+            set { SetProperty(ref sSID, value); }
         }
 
-        private string imagePath;
-
-        public string ImagePath
+        private ImageSource imageSource;
+        public ImageSource ImageSource
         {
-            get { return imagePath; }
-            set { SetProperty(ref imagePath, value); }
+            get { return imageSource; }
+            set { SetProperty(ref imageSource, value); }
         }
 
         #endregion
 
-        public ICommand GenerateQRCodeCommand
-        { get; private set; }
-
-        private void OnGenerateQRCode()
+        public ICommand GenerateQRCodeCommand { get; private set; }
+        private async Task OnGenerateQRCode()
         {
-            //ToDo fazer a ligação com o serviço de geração de código QR
-            LoadWifiCaracteristics();
-        }
-
-        private void LoadWifiCaracteristics()
-        {
-            var connectivityAndroid = DependencyService.Get<IConnectivityService>();
-            WifiSummary wifiSummary = connectivityAndroid.GetCurrentWifiName();
-
-            if (wifiSummary.WifiState == WifiState.Enabled)
-            {
-                Name = wifiSummary.SSID;
-                Status = "Conectado";
-                ImagePath = "WiFiFull.png";
-            }
-            else
-            {
-                Name = "Nome não encontrado";
-                Status = "Desconectado";
-                ImagePath = "WiFiDisconected.png";
-            }
+            ImageSource = await QRCodeGenerateService.GenerateAsync(WifiSummary);
         }
     }
 }

@@ -2,24 +2,40 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Text;
+using MvvmHelpers;
 
 namespace QRede.Model
 {
-    public class WifiSummary
+    public class WifiSummary : ObservableObject
     {
-        public WifiSummary(string wifiName)
+        public WifiSummary()
         {
-            if (string.IsNullOrEmpty(wifiName))
-                WifiState = WifiState.Disabled;
-            else
-            {
-                SSID = wifiName;
-                WifiState = WifiState.Enabled;
-            }
         }
 
         public string SSID { get; set; }
-        public WifiState WifiState { get; set; }
+
+        private string password;
+
+        public string Password
+        {
+            get { return password; }
+            set { SetProperty(ref password, value); }
+        }
+
+        private string wifiState;
+        public string WifiState
+        {
+            get { return wifiState; }
+            set { SetProperty(ref wifiState, value); }
+        }
+
+        private string imagePath;
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set { SetProperty(ref imagePath, value); }
+        }
     }
 }
