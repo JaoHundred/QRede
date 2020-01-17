@@ -23,7 +23,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Text="SSID:"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
             <Label Grid.Row="1" Grid.Column="0" Text="Status:"/>
             <Label Grid.Row="1" Grid.Column="1" Text="{Binding Status}"/>
             <Label Grid.Row="2" Grid.Column="0" Text="Senha:"/>
