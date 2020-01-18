@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRede.Modules;
+using QRede.Interfaces;
 
 namespace QRede.Modules
 {
@@ -16,7 +17,7 @@ namespace QRede.Modules
         public HomeView()
         {
             InitializeComponent();
-            BindingContext=new HomeViewModel();
+            BindingContext = new HomeViewModel();
         }
     }
 }

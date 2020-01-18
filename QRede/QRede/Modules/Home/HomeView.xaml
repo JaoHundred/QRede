@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:QRede.Modules"
              xmlns:conv="clr-namespace:QRede.Converters"
+             xmlns:qrcodeMobileForms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:qrcodePortable="clr-namespace:ZXing.Common;assembly=zxing.portable"
              mc:Ignorable="d"
              x:Class="QRede.Modules.HomeView"
              x:DataType="vm:HomeViewModel">
@@ -21,11 +23,19 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition Height="auto"/>
-                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image Source="{Binding WifiSummary.ImagePath}"/>
-            <Image Grid.Row="1" Source="{Binding ImageSource}"/>
+            <Entry x:Name="hack" Text="{Binding BarcodeValue}" IsVisible="False"/>
+            <qrcodeMobileForms:ZXingBarcodeImageView Grid.Row="0" BarcodeFormat="QR_CODE"
+                                                     x:DataType="Entry"
+                                                     BindingContext="{x:Reference hack}"
+                                                     BarcodeValue="{Binding Text}">
+                <qrcodeMobileForms:ZXingBarcodeImageView.BarcodeOptions>
+                    <qrcodePortable:EncodingOptions Width="300" Height="300" />
+                </qrcodeMobileForms:ZXingBarcodeImageView.BarcodeOptions>
+            </qrcodeMobileForms:ZXingBarcodeImageView>
+            <Image Grid.Row="1" Source="{Binding WifiSummary.ImagePath}"/>
         </Grid>
 
         <Grid Grid.Row="1">

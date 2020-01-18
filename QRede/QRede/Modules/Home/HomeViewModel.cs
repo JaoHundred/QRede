@@ -20,7 +20,7 @@ namespace QRede.Modules
         public HomeViewModel()
         {
             //ToDo Descomentar quando o método estiver implementado
-            WifiSummary = new WifiSummary();
+            WifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE);
             LoadTask = LoadAsync();
             GenerateQRCodeCommand = new magno.AsyncCommand(OnGenerateQRCode);
         }
@@ -66,11 +66,11 @@ namespace QRede.Modules
             set { SetProperty(ref sSID, value); }
         }
 
-        private ImageSource imageSource;
-        public ImageSource ImageSource
+        private string barcodeValue;
+        public string BarcodeValue
         {
-            get { return imageSource; }
-            set { SetProperty(ref imageSource, value); }
+            get { return barcodeValue; }
+            set { SetProperty(ref barcodeValue, value); }
         }
 
         #endregion
@@ -78,7 +78,14 @@ namespace QRede.Modules
         public ICommand GenerateQRCodeCommand { get; private set; }
         private async Task OnGenerateQRCode()
         {
-            ImageSource = await QRCodeGenerateService.GenerateAsync(WifiSummary);
+            string formatedWifiString = await QRCodeGenerateService.GenerateAsync(WifiSummary);
+
+
+        //TODO: abrir tela modal passando como parâmetro a string formatada da rede
+        //mover controles zxing e hack para a janela modal
+        //chamar aqui o serviço de abrir a janela modal
+        //https://docs.microsoft.com/pt-br/dotnet/api/system.activator.createinstance?view=netframework-4.8
+        //https://docs.microsoft.com/pt-br/dotnet/api/system.type.getconstructor?view=netframework-4.8
         }
     }
 }

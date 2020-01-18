@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using QRCoder;
 using System.Drawing;
 using Xamarin.Forms;
 using System.IO;
@@ -14,52 +13,22 @@ namespace QRede.Services
 {
     public static class QRCodeGenerateService
     {
+        /// <summary>
+        /// parâmetros 
+        /// {0} = SSID (nome da rede)
+        /// {1} = WPA || WEP (security)
+        /// {2} = senha
+        /// </summary>
+        public static readonly string FormatedWifiString = "WIFI:S:{0};T:{1};P:{2};;";
+
         //Todo a biblioteca Qrcoder está com diferenças de versão de outras bibliotecas do xamarin forms, pesquisar por outra solução para gerar qrcode
-        public static Task<ImageSource> GenerateAsync(WifiSummary wifiSummary)
+        public static Task<string> GenerateAsync(WifiSummary wifiSummary)
         {
             return Task.Run(() =>
             {
-                Bitmap qrCodeImage = default;
-                try
-                {
-                    PayloadGenerator.WiFi wifiPayload = new PayloadGenerator.WiFi(wifiSummary.SSID, wifiSummary.Password, PayloadGenerator.WiFi.Authentication.WPA);
-                    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                    QRCodeData qrCodeData = qrGenerator.CreateQrCode(wifiPayload.ToString(), QRCodeGenerator.ECCLevel.Q);
-                    QRCode qRCode = new QRCode(qrCodeData);
-                    qrCodeImage = qRCode.GetGraphic(20);
-                }
-                catch (Exception ex)
-                {
-
-                    
-                }
-                
-
-                return BitMapToImageSource(qrCodeImage);
+                wifiSummary.FormatedWifiString = string.Format(FormatedWifiString, wifiSummary.SSID, "WPA", wifiSummary.Password);
+                return wifiSummary.FormatedWifiString;
             });
-        }
-
-        public static ImageSource BitMapToImageSource(Bitmap bmp)
-        {
-            Stream imageStream = new MemoryStream();
-            int rgb;
-            Color c;
-
-            for (int y = 0; y < bmp.Height; y++)
-                for (int x = 0; x < bmp.Width; x++)
-                {
-                    c = bmp.GetPixel(x, y);
-                    rgb = (int)((c.R + c.G + c.B) / 3);
-                    bmp.SetPixel(x, y, Color.FromArgb(rgb, rgb, rgb));
-                }
-            bmp.Save(imageStream, ImageFormat.Jpeg);
-
-            ImageSource igmSrc = ImageSource.FromStream(() =>
-             {
-                 return imageStream;
-             });
-
-            return igmSrc;
         }
     }
 }

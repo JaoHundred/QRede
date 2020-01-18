@@ -5,13 +5,15 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using MvvmHelpers;
+using ZXing;
 
 namespace QRede.Model
 {
     public class WifiSummary : ObservableObject
     {
-        public WifiSummary()
+        public WifiSummary(BarcodeFormat barcodeFormat)
         {
+            BarcodeFormat = barcodeFormat;
         }
 
         public string SSID { get; set; }
@@ -36,6 +38,20 @@ namespace QRede.Model
         {
             get { return imagePath; }
             set { SetProperty(ref imagePath, value); }
+        }
+
+        private BarcodeFormat barcodeFormat;
+        public BarcodeFormat BarcodeFormat
+        {
+            get { return barcodeFormat; }
+            set { barcodeFormat = value; }
+        }
+
+        private string formatedWifiString;
+        public string FormatedWifiString
+        {
+            get { return formatedWifiString; }
+            set { SetProperty(ref formatedWifiString, value); }
         }
     }
 }
