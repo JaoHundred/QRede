@@ -21,7 +21,6 @@ namespace QRede.Services
         /// </summary>
         public static readonly string FormatedWifiString = "WIFI:S:{0};T:{1};P:{2};;";
 
-        //Todo a biblioteca Qrcoder está com diferenças de versão de outras bibliotecas do xamarin forms, pesquisar por outra solução para gerar qrcode
         public static Task<string> GenerateAsync(WifiSummary wifiSummary)
         {
             return Task.Run(() =>

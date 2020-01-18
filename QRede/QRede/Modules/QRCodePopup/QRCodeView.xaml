@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:QRede.Modules"
+             xmlns:conv="clr-namespace:QRede.Converters"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:qrcodeMobileForms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:qrcodePortable="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="QRede.Modules.QRCodeView"
+                 Padding="50"
+                 HasSystemPadding="True">
+    <Grid BackgroundColor="Black">        
+    <Entry x:Name="hack" Text="{Binding FormatedWifiString}" IsVisible="False"/>
+            <qrcodeMobileForms:ZXingBarcodeImageView Grid.Row="0" BarcodeFormat="QR_CODE"
+                                                     x:DataType="Entry"
+                                                     BindingContext="{x:Reference hack}"
+                                                     BarcodeValue="{Binding Text}">
+                <qrcodeMobileForms:ZXingBarcodeImageView.BarcodeOptions>
+                    <qrcodePortable:EncodingOptions Width="300" Height="300" />
+                </qrcodeMobileForms:ZXingBarcodeImageView.BarcodeOptions>
+            </qrcodeMobileForms:ZXingBarcodeImageView>
+    </Grid>
+</pages:PopupPage>

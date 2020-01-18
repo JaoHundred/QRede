@@ -12,6 +12,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using QRede.Services;
 using magno = MvvmHelpers.Commands;
+using Rg.Plugins;
+using QRede.Modules;
+using Rg.Plugins.Popup.Pages;
 
 namespace QRede.Modules
 {
@@ -19,7 +22,6 @@ namespace QRede.Modules
     {
         public HomeViewModel()
         {
-            //ToDo Descomentar quando o método estiver implementado
             WifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE);
             LoadTask = LoadAsync();
             GenerateQRCodeCommand = new magno.AsyncCommand(OnGenerateQRCode);
@@ -77,15 +79,9 @@ namespace QRede.Modules
 
         public ICommand GenerateQRCodeCommand { get; private set; }
         private async Task OnGenerateQRCode()
-        {
+        {           
             string formatedWifiString = await QRCodeGenerateService.GenerateAsync(WifiSummary);
-
-
-        //TODO: abrir tela modal passando como parâmetro a string formatada da rede
-        //mover controles zxing e hack para a janela modal
-        //chamar aqui o serviço de abrir a janela modal
-        //https://docs.microsoft.com/pt-br/dotnet/api/system.activator.createinstance?view=netframework-4.8
-        //https://docs.microsoft.com/pt-br/dotnet/api/system.type.getconstructor?view=netframework-4.8
+            await NavigationService.NavigateAsync<QRCodeViewModel>(formatedWifiString);
         }
     }
 }
