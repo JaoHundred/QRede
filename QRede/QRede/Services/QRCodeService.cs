@@ -11,7 +11,7 @@ using System.Drawing.Imaging;
 
 namespace QRede.Services
 {
-    public static class QRCodeGenerateService
+    public static class QRCodeService
     {
         /// <summary>
         /// parâmetros 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Net.Wifi;
@@ -22,6 +21,44 @@ namespace QRede.Droid.Services
 {
     public class ConnectivityService : IConnectivityService
     {
+        public void Conect(string result)
+        {
+            if (string.IsNullOrWhiteSpace(result))
+                return;
+            if (!result.ToUpperInvariant().StartsWith("WIFI:", StringComparison.Ordinal))
+                return;
+            string[] parser = result.Replace("{", "").Replace("}", "").Split(';', ':');
+            //FORMATO DO PARSER
+            //[0]WIFI
+            //[1]S
+            //[2]SSID
+            //[3]T
+            //[4]WPA
+            //[5]P
+            //[6]SENHA
+            //[7]""
+            //[8]""
+            if (parser?.Length == 9 && parser[1] == "S" && parser[3] == "T" && parser[5] == "P")
+            {
+                string SSID = parser[2];
+                string password = parser[6];
+                WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
+                string info = GetCurrentWifiName();
+                if (info != SSID)
+                {
+                    var wifiConfig = new WifiConfiguration
+                    {
+                        Ssid = $"\"{SSID}\"",
+                        PreSharedKey = $"\"{password}\""
+                    };
+                    var addNetwork = wifiManager.AddNetwork(wifiConfig);
+                    var network = wifiManager.ConfiguredNetworks
+                         .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
+                    var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
+                }
+            }
+        }
+
         public string GetCurrentWifiName()
         {
             string ssid = "";
@@ -53,7 +90,7 @@ namespace QRede.Droid.Services
             {
                 char ch = ssid[i];
 
-                if(!charToRemove.Contains(ch))
+                if (!charToRemove.Contains(ch))
                     builder.Append(ch);
             }
 

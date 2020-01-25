@@ -9,5 +9,7 @@ namespace QRede.Interfaces
     public interface IConnectivityService
     {
         string GetCurrentWifiName();
+
+        void Conect(string result);
     }
 }

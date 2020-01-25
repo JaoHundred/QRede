@@ -10,4 +10,7 @@
     <FlyoutItem Title="Home">
         <ShellContent ContentTemplate="{DataTemplate Views:HomeView}"/>
     </FlyoutItem>
+    <FlyoutItem Title="Scanner">
+        <ShellContent ContentTemplate="{DataTemplate Views:QRScannerView}"/>
+    </FlyoutItem>
 </Shell>

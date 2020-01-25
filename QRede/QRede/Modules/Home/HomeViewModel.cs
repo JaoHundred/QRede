@@ -80,7 +80,7 @@ namespace QRede.Modules
         public ICommand GenerateQRCodeCommand { get; private set; }
         private async Task OnGenerateQRCode()
         {           
-            string formatedWifiString = await QRCodeGenerateService.GenerateAsync(WifiSummary);
+            string formatedWifiString = await QRCodeService.GenerateAsync(WifiSummary);
             await NavigationService.NavigateAsync<QRCodeViewModel>(formatedWifiString);
         }
     }
