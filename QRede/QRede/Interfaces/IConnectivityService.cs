@@ -10,6 +10,6 @@ namespace QRede.Interfaces
     {
         string GetCurrentWifiName();
 
-        void Conect(string result);
+        void Connect(string result);
     }
 }

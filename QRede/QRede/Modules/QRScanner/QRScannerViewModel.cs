@@ -11,7 +11,7 @@ using QRede.Interfaces;
 
 namespace QRede.Modules
 {
-    public class QRScannerViewModel:BaseViewModel
+    public class QRScannerViewModel : BaseViewModel
     {
         public QRScannerViewModel()
         {
@@ -19,22 +19,16 @@ namespace QRede.Modules
         }
 
         private Result result;
-
         public Result Result
         {
             get { return result; }
             set { result = value; }
         }
 
-
         public ICommand ScanCommand { get; private set; }
-
-
         private void OnScan()
         {
-                DependencyService.Get<IConnectivityService>().Conect(Result.Text);           
+            DependencyService.Get<IConnectivityService>().Connect(Result.Text);
         }
-
-
     }
 }

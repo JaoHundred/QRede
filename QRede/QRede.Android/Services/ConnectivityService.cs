@@ -21,7 +21,7 @@ namespace QRede.Droid.Services
 {
     public class ConnectivityService : IConnectivityService
     {
-        public void Conect(string result)
+        public void Connect(string result)
         {
             if (string.IsNullOrWhiteSpace(result))
                 return;
@@ -55,6 +55,8 @@ namespace QRede.Droid.Services
                     var network = wifiManager.ConfiguredNetworks
                          .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
                     var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
+
+                    //TODO:avisar ao usuário via o ToasTService se conseguiu se conectar na rede escaneada
                 }
             }
         }

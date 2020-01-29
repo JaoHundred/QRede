@@ -6,7 +6,8 @@
              xmlns:qrcodeMobileForms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              xmlns:qrcodePortable="clr-namespace:ZXing.Common;assembly=zxing.portable"
              mc:Ignorable="d"
-             x:Class="QRede.Modules.QRScannerView">
+             x:Class="QRede.Modules.QRScannerView"
+             Appearing="OnPageAppearing">
     <ContentPage.Content>
         <StackLayout>
             <qrcodeMobileForms:ZXingScannerView ScanResultCommand="{Binding ScanCommand}" Result="{Binding Result, Mode=TwoWay}" x:Name="BarcodeScanView" IsVisible="true" IsScanning="True"/>

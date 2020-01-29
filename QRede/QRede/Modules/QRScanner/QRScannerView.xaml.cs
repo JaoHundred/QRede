@@ -14,11 +14,14 @@ namespace QRede.Modules
     {
         public QRScannerView()
         {
-            //TODO: verificar linha abaixo pra saber se o delay ajuda ao QRCode funcionar(fazer mais alguns testes)
-            Task.Run(async() => { await Task.Delay(TimeSpan.FromMilliseconds(500)); });
-
             InitializeComponent();
             BindingContext = new QRScannerViewModel();
+        }
+
+        private void OnPageAppearing(object sender, EventArgs e)
+        {
+            //TODO: verificar linha abaixo pra saber se o delay ajuda ao QRCode funcionar(fazer mais alguns testes)
+            Task.Run(async () => { await Task.Delay(TimeSpan.FromSeconds(4)); });
         }
     }
 }
