@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using Android.App;
 using Android.Content;
 using Android.Net.Wifi;
@@ -46,10 +47,11 @@ namespace QRede.Droid.Services
                 string info = GetCurrentWifiName();
                 if (info != SSID)
                 {
+                    
                     var wifiConfig = new WifiConfiguration
                     {
-                        Ssid = $"\"{SSID}\"",
-                        PreSharedKey = $"\"{password}\""
+                        Ssid = $"\"{SSID}\"" ,
+                        PreSharedKey = $"\"{password.Replace("\"","")}\""
                     };
                     var addNetwork = wifiManager.AddNetwork(wifiConfig);
                     var network = wifiManager.ConfiguredNetworks

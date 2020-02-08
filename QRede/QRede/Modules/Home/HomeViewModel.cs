@@ -39,12 +39,12 @@ namespace QRede.Modules
 
                     if (string.IsNullOrEmpty(SSID))
                     {
-                        WifiSummary.WifiState = "Desconectado";
+                        WifiSummary.WifiState = Language.Language.WiFiStateOff;
                         WifiSummary.ImagePath = "WiFiDisconected.png";
                     }
                     else
                     {
-                        WifiSummary.WifiState = "Conectado";
+                        WifiSummary.WifiState = Language.Language.WiFiStateOn;
                         WifiSummary.ImagePath = "WiFiFull.png";
                     }
 
