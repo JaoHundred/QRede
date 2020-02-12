@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRede.AppShell"
-             xmlns:Views ="clr-namespace:QRede.Modules">
+             xmlns:Views ="clr-namespace:QRede.Modules"
+       BackgroundColor="{DynamicResource NavigationBarColor}">
 
     <FlyoutItem Title="Home">
         <ShellContent ContentTemplate="{DataTemplate Views:HomeView}"/>

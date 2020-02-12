@@ -5,6 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRede.Themes.LightTheme">
-    <Color x:Key="BackgroundColor">#287ACC</Color>
+
+    <Color x:Key="BackgroundColor">#639EDA</Color>
     <!--https://www.color-hex.com/color/287acc-->
+    <Color x:Key="ButtonColor">#DEA974</Color>
+    <!--https://www.color-hex.com/color/dea974-->
+    <Color x:Key="NavigationBarColor">#d69452</Color>
+    <!--https://www.color-hex.com/color/#d69452-->
+    <Color x:Key="TextColor">#666666</Color>
+    <!--https://www.color-hex.com/color/666666-->
 </ResourceDictionary>
