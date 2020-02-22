@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QRede.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,8 +14,20 @@ namespace QRede
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        public readonly static string themeKey = "AppTheme";
+
+        protected override async void OnStart()
         {
+            if (App.Current.Properties.ContainsKey(themeKey))
+            {
+                int themeId = Convert.ToInt32(App.Current.Properties[themeKey]);
+
+                await ThemeService.ChangeThemeAsync(themeId);
+            }
+            else
+                App.Current.Properties.Add(themeKey, 0);
+
+            await App.Current.SavePropertiesAsync();
         }
 
         protected override void OnSleep()

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:QRede.Language"
              mc:Ignorable="d"
              x:Class="QRede.AppShell"
              xmlns:Views ="clr-namespace:QRede.Modules"
@@ -13,5 +14,8 @@
     </FlyoutItem>
     <FlyoutItem Title="Scanner">
         <ShellContent ContentTemplate="{DataTemplate Views:QRScannerView}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static resources:Language.Settings}">
+        <ShellContent ContentTemplate="{DataTemplate Views:SettingsView}"/>
     </FlyoutItem>
 </Shell>
