@@ -6,6 +6,11 @@
              mc:Ignorable="d"
              x:Class="QRede.Themes.LightTheme">
 
+
+    <Color x:Key="ItemSelectedColor">#cccccc</Color>
+    <!--https://www.color-hex.com/color/cccccc-->
+    <Color x:Key="HamburgerMenuBackgroundColor">#68a1db</Color>
+    <!--https://www.color-hex.com/color/68a1db-->
     <Color x:Key="BackgroundColor">#639EDA</Color>
     <!--https://www.color-hex.com/color/287acc-->
     <Color x:Key="ButtonColor">#DEA974</Color>
