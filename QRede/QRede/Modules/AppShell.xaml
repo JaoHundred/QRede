@@ -46,7 +46,7 @@
                        HeightRequest="35" IsOpaque="False"/>
                 <Label Grid.Column="1" FontSize="18"
                        Text="{Binding Title}" TextColor="{DynamicResource TextColor}"
-                       VerticalTextAlignment="Center" />
+                       VerticalTextAlignment="Center" FontAttributes="Bold" />
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
