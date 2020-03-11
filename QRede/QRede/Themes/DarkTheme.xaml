@@ -14,8 +14,8 @@
     <!--https://www.color-hex.com/color/081828-->
     <Color x:Key="ButtonColor">#524639</Color>
     <!--https://www.color-hex.com/color/524639-->
-    <Color x:Key="NavigationBarColor">#05051C</Color>
-    <!--https://www.color-hex.com/color/05051C-->
+    <Color x:Key="NavigationBarColor">#213346</Color>
+    <!--https://www.color-hex.com/color/213346-->
     <Color x:Key="TextColor">#c1c1c1</Color>
     <!--https://www.color-hex.com/color/c1c1c1-->
 
