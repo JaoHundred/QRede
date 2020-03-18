@@ -19,4 +19,10 @@
     <Color x:Key="TextColor">#c1c1c1</Color>
     <!--https://www.color-hex.com/color/c1c1c1-->
 
+    <Color x:Key="SwitchOnColor">#667dae</Color>
+    <!--https://www.color-hex.com/color/667dae-->
+
+    <Color x:Key="SwitchThumbColor">#7237ae</Color>
+    <!--https://www.color-hex.com/color/#7237ae-->
+
 </ResourceDictionary>

@@ -4,15 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:QRede.Modules"
+             xmlns:controls="clr-namespace:QRede.CustomControls"
              xmlns:resources="clr-namespace:QRede.Language"
              x:DataType="vm:SettingsViewModel"
              mc:Ignorable="d"
-             x:Class="QRede.Modules.SettingsView" >
+             x:Class="QRede.Modules.SettingsView">
 
-    <StackLayout Orientation="Vertical" Margin="5">
+    <StackLayout Orientation="Vertical" Margin="10">
         <StackLayout Orientation="Horizontal">
             <Label Text="{Binding ThemeText}" />
-            <Switch IsToggled="{Binding IsDarkTheme}" ThumbColor="Green"/>
+            <controls:CustomSwitch IsToggled="{Binding IsDarkTheme}" 
+                                   OffColor="LightGreen"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

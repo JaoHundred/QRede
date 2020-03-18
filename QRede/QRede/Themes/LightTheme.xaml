@@ -12,11 +12,17 @@
     <Color x:Key="HamburgerMenuBackgroundColor">#82b1e1</Color>
     <!--https://www.color-hex.com/color/68a1db-->
     <Color x:Key="BackgroundColor">#82b1e1</Color>
-    <!--https://www.color-hex.com/color/#82b1e1-->
+    <!--https://www.color-hex.com/color/82b1e1-->
     <Color x:Key="ButtonColor">#3387a2</Color>
     <!--https://www.color-hex.com/color/dea974-->
     <Color x:Key="NavigationBarColor">#678BE8</Color> 
     <!--https://www.color-hex.com/color/#678BE8-->
     <Color x:Key="TextColor">#515151</Color>
     <!--https://www.color-hex.com/color/666666-->
+
+    <Color x:Key="SwitchOnColor">#667dae</Color>
+    <!--https://www.color-hex.com/color/667dae-->
+
+    <Color x:Key="SwitchThumbColor">#7237ae</Color>
+    <!--https://www.color-hex.com/color/#7237ae-->
 </ResourceDictionary>

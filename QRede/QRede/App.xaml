@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:T="clr-namespace:QRede.Themes"
+             xmlns:CustomControl="clr-namespace:QRede.CustomControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRede.App">
@@ -31,6 +32,12 @@
             </Style>
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
                 <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
+            </Style>
+            <Style TargetType="CustomControl:CustomSwitch">
+                <Setter Property="OnColor" Value="{DynamicResource SwitchOnColor}"/>
+                <Setter Property="ThumbColor" Value="{DynamicResource SwitchThumbColor}"/>
+                
+                <Setter Property="Scale" Value="1.30"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
