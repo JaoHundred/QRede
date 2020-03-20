@@ -13,8 +13,7 @@
     <StackLayout Orientation="Vertical" Margin="10">
         <StackLayout Orientation="Horizontal">
             <Label Text="{Binding ThemeText}" />
-            <controls:CustomSwitch IsToggled="{Binding IsDarkTheme}" 
-                                   OffColor="LightGreen"/>
+            <controls:CustomSwitch IsToggled="{Binding IsDarkTheme}"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

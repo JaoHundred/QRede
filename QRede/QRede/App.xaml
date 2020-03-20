@@ -36,7 +36,7 @@
             <Style TargetType="CustomControl:CustomSwitch">
                 <Setter Property="OnColor" Value="{DynamicResource SwitchOnColor}"/>
                 <Setter Property="ThumbColor" Value="{DynamicResource SwitchThumbColor}"/>
-                
+                <!--<Setter Property="OffColor" Value="Yellow"/>-->
                 <Setter Property="Scale" Value="1.30"/>
             </Style>
         </ResourceDictionary>
