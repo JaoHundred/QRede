@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Net.Wifi;
@@ -14,6 +15,7 @@ using Android.Views;
 using Android.Widget;
 using QRede.Droid.Services;
 using QRede.Interfaces;
+using QRede.Language;
 using QRede.Model;
 using Xamarin.Forms;
 
@@ -22,12 +24,18 @@ namespace QRede.Droid.Services
 {
     public class ConnectivityService : IConnectivityService
     {
-        public void Connect(string result)
+        public async Task Connect(string result)
         {
             if (string.IsNullOrWhiteSpace(result))
+            {
+                ToastService.ToastLongMessage(Language.Language.Invalid);
                 return;
+            }
             if (!result.ToUpperInvariant().StartsWith("WIFI:", StringComparison.Ordinal))
+            {
+                ToastService.ToastLongMessage(Language.Language.Invalid);
                 return;
+            }
             string[] parser = result.Replace("{", "").Replace("}", "").Split(';', ':');
             //FORMATO DO PARSER
             //[0]WIFI
@@ -47,20 +55,37 @@ namespace QRede.Droid.Services
                 string info = GetCurrentWifiName();
                 if (info != SSID)
                 {
-                    
+
                     var wifiConfig = new WifiConfiguration
                     {
-                        Ssid = $"\"{SSID}\"" ,
-                        PreSharedKey = $"\"{password.Replace("\"","")}\""
+                        Ssid = $"\"{SSID}\"",
+                        PreSharedKey = $"\"{password.Replace("\"", "")}\""
                     };
                     var addNetwork = wifiManager.AddNetwork(wifiConfig);
                     var network = wifiManager.ConfiguredNetworks
                          .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
                     var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
-
-                    //TODO:avisar ao usuário via o ToasTService se conseguiu se conectar na rede escaneada
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    info = GetCurrentWifiName();
+                    if (info==SSID)
+                    {
+                        ToastService.ToastLongMessage(Language.Language.Sucess);
+                    }
+                    else
+                    {
+                        ToastService.ToastLongMessage(Language.Language.Fail);
+                    }
+                }
+                else
+                {
+                    ToastService.ToastLongMessage(Language.Language.Alredy);
                 }
             }
+            else
+            {
+                ToastService.ToastLongMessage(Language.Language.Invalid);
+            }
+            return;
         }
 
         public string GetCurrentWifiName()

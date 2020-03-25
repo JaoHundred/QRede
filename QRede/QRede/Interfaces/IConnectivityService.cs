@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Security;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace QRede.Interfaces
 {
@@ -10,6 +11,6 @@ namespace QRede.Interfaces
     {
         string GetCurrentWifiName();
 
-        void Connect(string result);
+        Task Connect(string result);
     }
 }

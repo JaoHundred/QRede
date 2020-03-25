@@ -7,7 +7,7 @@ using magno = MvvmHelpers.Commands;
 using Xamarin.Forms;
 using ZXing;
 using QRede.Interfaces;
-
+using System.Threading.Tasks;
 
 namespace QRede.Modules
 {
@@ -15,7 +15,7 @@ namespace QRede.Modules
     {
         public QRScannerViewModel()
         {
-            ScanCommand = new magno.Command(OnScan);
+            ScanCommand = new magno.AsyncCommand(OnScan);
         }
 
         private Result result;
@@ -26,9 +26,9 @@ namespace QRede.Modules
         }
 
         public ICommand ScanCommand { get; private set; }
-        private void OnScan()
+        private async Task OnScan()
         {
-            DependencyService.Get<IConnectivityService>().Connect(Result.Text);
+            await DependencyService.Get<IConnectivityService>().Connect(Result.Text);
         }
     }
 }
