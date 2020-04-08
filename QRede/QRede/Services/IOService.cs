@@ -13,10 +13,7 @@ namespace QRede.Services
         public static Task WriteAsync(T dataToSave, string path)
         {
             return Task.Run(()=> {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
+               
                 using (StreamWriter outputFile = new StreamWriter(path, false))
                 {
                     using(JsonTextWriter JW = new JsonTextWriter(outputFile))
@@ -31,7 +28,7 @@ namespace QRede.Services
         {
             return Task.Run(() => {                 
                 List<T> QRRead = new List<T>();
-                if (!Directory.Exists(path))
+                if (!File.Exists(path))
                 {
                     return QRRead;
                 }

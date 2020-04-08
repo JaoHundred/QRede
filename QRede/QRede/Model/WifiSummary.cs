@@ -29,6 +29,7 @@ namespace QRede.Model
         }
 
         private string wifiState;
+        [JsonIgnore]
         public string WifiState
         {
             get { return wifiState; }
@@ -36,6 +37,7 @@ namespace QRede.Model
         }
 
         private string imagePath;
+        [JsonIgnore]
         public string ImagePath
         {
             get { return imagePath; }
@@ -43,6 +45,7 @@ namespace QRede.Model
         }
 
         private BarcodeFormat barcodeFormat;
+        [JsonIgnore]
         public BarcodeFormat BarcodeFormat
         {
             get { return barcodeFormat; }

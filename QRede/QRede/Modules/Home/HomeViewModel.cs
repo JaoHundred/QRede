@@ -20,6 +20,8 @@ namespace QRede.Modules
 {
     public class HomeViewModel : BaseViewModel, IAsyncInitialization
     {
+        //TODO:https://github.com/JaoHundred/QRede/issues/18
+
         public HomeViewModel()
         {
             WifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE);
@@ -67,14 +69,6 @@ namespace QRede.Modules
             get { return sSID; }
             set { SetProperty(ref sSID, value); }
         }
-
-        private string barcodeValue;
-        public string BarcodeValue
-        {
-            get { return barcodeValue; }
-            set { SetProperty(ref barcodeValue, value); }
-        }
-
         #endregion
 
         public ICommand GenerateQRCodeCommand { get; private set; }

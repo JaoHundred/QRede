@@ -26,6 +26,7 @@
                     <qrcodePortable:EncodingOptions Width="300" Height="300" />
                 </qrcodeMobileForms:ZXingBarcodeImageView.BarcodeOptions>
             </qrcodeMobileForms:ZXingBarcodeImageView>
-        <Button Grid.Row="1" Text="Salvar" Command="{Binding SaveCommand}"/>
+        <Button Grid.Row="1" Text="Salvar" Command="{Binding SaveCommand}"
+                Margin="5"/>
     </Grid>
 </pages:PopupPage>
