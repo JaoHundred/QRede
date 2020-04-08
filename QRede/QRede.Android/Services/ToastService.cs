@@ -9,13 +9,16 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using QRede.Droid.Services;
 using Xamarin.Forms;
+using QRede.Interfaces;
 
+[assembly:Dependency(typeof(ToastService))]
 namespace QRede.Droid.Services
 {
-    public static class ToastService
+    public class ToastService:IToastService
     {
-        public static void ToastLongMessage(string message, int fontSize = 14)
+        public void ToastLongMessage(string message, int fontSize = 14)
         {
             Device.BeginInvokeOnMainThread(() =>
             {

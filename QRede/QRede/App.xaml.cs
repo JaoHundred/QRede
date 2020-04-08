@@ -1,5 +1,7 @@
-﻿using QRede.Services;
+﻿using QRede.Model;
+using QRede.Services;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +18,11 @@ namespace QRede
 
         public readonly static string themeKey = "AppTheme";
 
+        public static List<WifiSummary> WifiSummaryCollection;
+
         protected override async void OnStart()
         {
+            WifiSummaryCollection = await IOService<WifiSummary>.ReadAsync(Constants.QrCodeFilePath);
             if (App.Current.Properties.ContainsKey(themeKey))
             {
                 int themeId = Convert.ToInt32(App.Current.Properties[themeKey]);

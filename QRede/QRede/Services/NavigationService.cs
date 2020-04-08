@@ -27,5 +27,10 @@ namespace QRede.Services
 
             await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync((PopupPage)View);
         }
+
+        public static Task PopModalAsync()
+        {
+            return Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAsync();
+        }
     }
 }

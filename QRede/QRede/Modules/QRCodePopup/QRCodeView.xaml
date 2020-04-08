@@ -12,8 +12,12 @@
              x:Class="QRede.Modules.QRCodeView"
                  Padding="50"
                  HasSystemPadding="True">
-    <Grid BackgroundColor="Black">        
-    <Entry x:Name="hack" Text="{Binding FormatedWifiString}" IsVisible="False"/>
+    <Grid BackgroundColor="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+    <Entry x:Name="hack" Text="{Binding CurrentWifiSummary.FormatedWifiString}" IsVisible="False"/>
             <qrcodeMobileForms:ZXingBarcodeImageView Grid.Row="0" BarcodeFormat="QR_CODE"
                                                      x:DataType="Entry"
                                                      BindingContext="{x:Reference hack}"
@@ -22,5 +26,6 @@
                     <qrcodePortable:EncodingOptions Width="300" Height="300" />
                 </qrcodeMobileForms:ZXingBarcodeImageView.BarcodeOptions>
             </qrcodeMobileForms:ZXingBarcodeImageView>
+        <Button Grid.Row="1" Text="Salvar" Command="{Binding SaveCommand}"/>
     </Grid>
 </pages:PopupPage>

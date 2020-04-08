@@ -6,9 +6,11 @@ using System.Security;
 using System.Text;
 using MvvmHelpers;
 using ZXing;
+using Newtonsoft.Json;
 
 namespace QRede.Model
 {
+    [JsonObject]
     public class WifiSummary : ObservableObject
     {
         public WifiSummary(BarcodeFormat barcodeFormat)

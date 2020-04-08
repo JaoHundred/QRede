@@ -14,7 +14,7 @@ namespace QRede.Modules
     {
         public QRCodeView()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }

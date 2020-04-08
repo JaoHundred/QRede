@@ -26,14 +26,15 @@ namespace QRede.Droid.Services
     {
         public async Task Connect(string result)
         {
+            IToastService toastService = DependencyService.Get<IToastService>();
             if (string.IsNullOrWhiteSpace(result))
             {
-                ToastService.ToastLongMessage(Language.Language.Invalid);
+                toastService.ToastLongMessage(Language.Language.Invalid);
                 return;
             }
             if (!result.ToUpperInvariant().StartsWith("WIFI:", StringComparison.Ordinal))
             {
-                ToastService.ToastLongMessage(Language.Language.Invalid);
+                toastService.ToastLongMessage(Language.Language.Invalid);
                 return;
             }
             string[] parser = result.Replace("{", "").Replace("}", "").Split(';', ':');
@@ -69,21 +70,21 @@ namespace QRede.Droid.Services
                     info = GetCurrentWifiName();
                     if (info==SSID)
                     {
-                        ToastService.ToastLongMessage(Language.Language.Sucess);
+                        toastService.ToastLongMessage(Language.Language.Sucess);
                     }
                     else
                     {
-                        ToastService.ToastLongMessage(Language.Language.Fail);
+                        toastService.ToastLongMessage(Language.Language.Fail);
                     }
                 }
                 else
                 {
-                    ToastService.ToastLongMessage(Language.Language.Alredy);
+                    toastService.ToastLongMessage(Language.Language.Alredy);
                 }
             }
             else
             {
-                ToastService.ToastLongMessage(Language.Language.Invalid);
+                toastService.ToastLongMessage(Language.Language.Invalid);
             }
             return;
         }
