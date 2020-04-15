@@ -33,7 +33,8 @@ namespace QRede.Modules
         {
             App.WifiSummaryCollection.Add(CurrentWifiSummary);
             await IOService<List<WifiSummary>>.WriteAsync(App.WifiSummaryCollection,Constants.QrCodeFilePath);
-            DependencyService.Get<IToastService>().ToastLongMessage("Código QR Salvo com sucesso");
+            DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.SavedWifi);
+
             await NavigationService.PopModalAsync();
         }
     }

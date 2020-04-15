@@ -24,7 +24,7 @@ namespace QRede.Modules
 
         public HomeViewModel()
         {
-            WifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE);
+
             LoadTask = LoadAsync();
             GenerateQRCodeCommand = new magno.AsyncCommand(OnGenerateQRCode);
         }
@@ -37,17 +37,17 @@ namespace QRede.Modules
                 Device.StartTimer(TimeSpan.FromSeconds(2), () =>
                 {
                     var connectivityAndroid = DependencyService.Get<IConnectivityService>();
-                    WifiSummary.SSID = SSID = connectivityAndroid.GetCurrentWifiName();
+                    SSID = connectivityAndroid.GetCurrentWifiName();
 
                     if (string.IsNullOrEmpty(SSID))
                     {
-                        WifiSummary.WifiState = Language.Language.WiFiStateOff;
-                        WifiSummary.ImagePath = "WiFiDisconected.png";
+                        WifiState = Language.Language.WiFiStateOff;
+                        ImagePath = "WiFiDisconected.png";
                     }
                     else
                     {
-                        WifiSummary.WifiState = Language.Language.WiFiStateOn;
-                        WifiSummary.ImagePath = "WiFiFull.png";
+                        WifiState = Language.Language.WiFiStateOn;
+                        ImagePath = "WiFiFull.png";
                     }
 
                     return true;
@@ -56,12 +56,6 @@ namespace QRede.Modules
         }
 
         #region Property's
-        private WifiSummary wifiSummary;
-        public WifiSummary WifiSummary
-        {
-            get { return wifiSummary; }
-            set { wifiSummary = value; }
-        }
 
         private string sSID;
         public string SSID
@@ -69,12 +63,40 @@ namespace QRede.Modules
             get { return sSID; }
             set { SetProperty(ref sSID, value); }
         }
+
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set { SetProperty(ref _password, value); }
+        }
+
+        private string _wifiState;
+        public string WifiState
+        {
+            get { return _wifiState; }
+            set { SetProperty(ref _wifiState, value); }
+        }
+
+        private string _imagePath;
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { SetProperty(ref _imagePath, value); }
+        }
         #endregion
 
         public ICommand GenerateQRCodeCommand { get; private set; }
         private async Task OnGenerateQRCode()
-        {           
-            WifiSummary wifiSummary = await QRCodeService.GenerateAsync(WifiSummary);
+        {
+            WifiSummary wifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE)
+            {
+                SSID = SSID,
+                Password = Password,
+            };
+
+            await QRCodeService.GenerateQRStringAsync(wifiSummary);
+
             await NavigationService.NavigateAsync<QRCodeViewModel>(wifiSummary);
         }
     }

@@ -21,12 +21,11 @@ namespace QRede.Services
         /// </summary>
         public static readonly string FormatedWifiString = "WIFI:S:{0};T:{1};P:{2};;";
 
-        public static Task<WifiSummary> GenerateAsync(WifiSummary wifiSummary)
+        public static Task GenerateQRStringAsync(WifiSummary wifiSummary)
         {
             return Task.Run(() =>
             {
                 wifiSummary.FormatedWifiString = string.Format(FormatedWifiString, wifiSummary.SSID, "WPA", wifiSummary.Password);
-                return wifiSummary;
             });
         }
     }

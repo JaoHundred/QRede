@@ -138,6 +138,9 @@
   <data name="Password" xml:space="preserve">
     <value>Senha:</value>
   </data>
+  <data name="SavedWifi" xml:space="preserve">
+    <value>Código QR salvo com sucesso</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Configurações</value>
   </data>
