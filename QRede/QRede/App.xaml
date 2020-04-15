@@ -16,6 +16,9 @@
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
             </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}"/>
                 <Setter Property="TextColor" Value="White"/>
