@@ -57,6 +57,9 @@
     <FlyoutItem Title="Scanner">
         <ShellContent ContentTemplate="{DataTemplate Views:QRScannerView}"/>
     </FlyoutItem>
+    <FlyoutItem Title="Saved QRCode">
+        <ShellContent ContentTemplate="{DataTemplate Views:QRCollectionView}"/>
+    </FlyoutItem>
     <FlyoutItem Title="{x:Static resources:Language.Settings}">
         <ShellContent ContentTemplate="{DataTemplate Views:SettingsView}"/>
     </FlyoutItem>

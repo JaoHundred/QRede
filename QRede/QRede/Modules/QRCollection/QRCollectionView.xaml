@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:r="clr-namespace:QRede.Modules"
+             xmlns:m="clr-namespace:QRede.Model"
+             mc:Ignorable="d"
+             x:Class="QRede.Modules.QRCollectionView"
+             x:DataType="r:QRCollectionViewModel">
+    <Grid>
+        <CollectionView ItemsSource="{Binding WifiSummaryCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:WifiSummary">
+                    <Frame CornerRadius="10" BackgroundColor="Transparent" 
+                           BorderColor="Red">
+                        <Grid Margin="5" RowSpacing="0"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="0.15*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0"  Margin="5,0,0,0"
+                                   Source="{Binding QRCodeAsBytes}"/>
+                            <Grid Grid.Row="0" Grid.Column="1" Margin="5" >
+                                <Button BackgroundColor="Transparent"/>
+                                <Image Source="TrashSample.png" 
+                                       VerticalOptions="Start"/>
+                            </Grid>
+                            <Label Grid.Row="1" Text="{Binding SSID}" 
+                                   Margin="5,0,0,0"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
