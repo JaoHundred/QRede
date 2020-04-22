@@ -58,5 +58,7 @@ namespace QRede.Model
             get { return formatedWifiString; }
             set { SetProperty(ref formatedWifiString, value); }
         }
+
+        public byte[] QRCodeAsBytes { get; set; }
     }
 }

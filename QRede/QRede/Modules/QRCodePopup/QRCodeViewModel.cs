@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace QRede.Modules
 {
-    class QRCodeViewModel:BaseViewModel
+    class QRCodeViewModel : BaseViewModel
     {
         public QRCodeViewModel(WifiSummary formatedWifiString)
         {
@@ -31,8 +31,12 @@ namespace QRede.Modules
 
         public async Task OnSave()
         {
+            Task<byte[]> qrCodeTask = DependencyService.Get<IBarcodeService>().ConvertBarcodeImageToBytes(CurrentWifiSummary.FormatedWifiString);
+
+            CurrentWifiSummary.QRCodeAsBytes = await qrCodeTask;
+
             App.WifiSummaryCollection.Add(CurrentWifiSummary);
-            await IOService<List<WifiSummary>>.WriteAsync(App.WifiSummaryCollection,Constants.QrCodeFilePath);
+            await IOService<List<WifiSummary>>.WriteAsync(App.WifiSummaryCollection, Constants.QrCodeFilePath);
             DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.SavedWifi);
 
             await NavigationService.PopModalAsync();
