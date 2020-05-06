@@ -5,15 +5,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:r="clr-namespace:QRede.Modules"
              xmlns:m="clr-namespace:QRede.Model"
+             xmlns:c="clr-namespace:QRede.Converters"
              mc:Ignorable="d"
+             Appearing="OnApeared"
              x:Class="QRede.Modules.QRCollectionView"
              x:DataType="r:QRCollectionViewModel">
+    <ContentPage.Resources>
+        <c:ByteVectorToImageConverter x:Key="ByteToImage"/>
+    </ContentPage.Resources>
     <Grid>
         <CollectionView ItemsSource="{Binding WifiSummaryCollection}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:WifiSummary">
                     <Frame CornerRadius="10" BackgroundColor="Transparent" 
-                           BorderColor="Red">
+                           BorderColor="Red" Margin="5">
                         <Grid Margin="5" RowSpacing="0"  >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -24,7 +29,7 @@
                                 <ColumnDefinition Width="0.15*"/>
                             </Grid.ColumnDefinitions>
                             <Image Grid.Row="0"  Margin="5,0,0,0"
-                                   Source="{Binding QRCodeAsBytes}"/>
+                                   Source="{Binding QRCodeAsBytes,Converter={StaticResource ByteToImage}}"/>
                             <Grid Grid.Row="0" Grid.Column="1" Margin="5" >
                                 <Button BackgroundColor="Transparent"/>
                                 <Image Source="TrashSample.png" 

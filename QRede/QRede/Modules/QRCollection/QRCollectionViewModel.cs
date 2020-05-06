@@ -9,23 +9,20 @@ using System.Threading.Tasks;
 
 namespace QRede.Modules
 {
-    class QRCollectionViewModel : IAsyncInitialization
+    class QRCollectionViewModel
     {
         public QRCollectionViewModel()
         {
             WifiSummaryCollection = new ObservableRangeCollection<WifiSummary>();
-            LoadTask = LoadAsync();
         }
 
         public ObservableRangeCollection<WifiSummary> WifiSummaryCollection { get; set; }
-
-        public Task LoadTask { get; }
 
         public async Task LoadAsync()
         {
             await Task.Run(() =>
             {
-                WifiSummaryCollection.AddRange(App.WifiSummaryCollection);
+                WifiSummaryCollection.ReplaceRange(App.WifiSummaryCollection);
             });
         }
     }

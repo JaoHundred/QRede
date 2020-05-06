@@ -17,5 +17,10 @@ namespace QRede.Modules
             InitializeComponent();
             BindingContext = new QRCollectionViewModel();
         }
+
+        private async void OnApeared(object sender, EventArgs e)
+        {
+            await (BindingContext as QRCollectionViewModel).LoadAsync();
+        }
     }
 }

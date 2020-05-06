@@ -7,6 +7,7 @@ using System.Text;
 using MvvmHelpers;
 using ZXing;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace QRede.Model
 {

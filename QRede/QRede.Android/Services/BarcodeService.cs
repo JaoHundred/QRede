@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,15 +28,20 @@ namespace QRede.Droid.Services
                     Format = ZXing.BarcodeFormat.QR_CODE,
                     Options = new ZXing.Common.EncodingOptions
                     {
-                        Width = 1000,
-                        Height = 1000,
+                        Width = 0,
+                        Height = 50,
                         Margin = 10
                     }
                 };
 
                 barcodeWriter.Renderer = new ZXing.Mobile.BitmapRenderer();
                 Bitmap qrBitmap = barcodeWriter.Write(formatedWifiSummary);
+                var stream = new MemoryStream();
+                qrBitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);  // this is the diff between iOS and Android
+                stream.Position = 0;
+                return stream.ToArray();
 
+                /*
                 int size = qrBitmap.ByteCount;
                 byte[] byteArray = new byte[size];
                 ByteBuffer byteBuffer = ByteBuffer.Allocate(size);
@@ -44,6 +50,7 @@ namespace QRede.Droid.Services
                 byteBuffer.Get(byteArray);
 
                 return byteArray;
+                */
             });
         }
     }
