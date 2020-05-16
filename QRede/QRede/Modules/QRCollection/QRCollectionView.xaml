@@ -9,7 +9,8 @@
              mc:Ignorable="d"
              Appearing="OnApeared"
              x:Class="QRede.Modules.QRCollectionView"
-             x:DataType="r:QRCollectionViewModel">
+             x:DataType="r:QRCollectionViewModel"
+             x:Name="page">
     <ContentPage.Resources>
         <c:ByteVectorToImageConverter x:Key="ByteToImage"/>
     </ContentPage.Resources>
@@ -31,9 +32,11 @@
                             <Image Grid.Row="0"  Margin="5,0,0,0"
                                    Source="{Binding QRCodeAsBytes,Converter={StaticResource ByteToImage}}"/>
                             <Grid Grid.Row="0" Grid.Column="1" Margin="5" >
-                                <Button BackgroundColor="Transparent"/>
                                 <Image Source="TrashSample.png" 
                                        VerticalOptions="Start"/>
+                                <Button BackgroundColor="Transparent"
+                                        Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
+                                        CommandParameter="{Binding .}"/>
                             </Grid>
                             <Label Grid.Row="1" Text="{Binding SSID}" 
                                    Margin="5,0,0,0"/>
