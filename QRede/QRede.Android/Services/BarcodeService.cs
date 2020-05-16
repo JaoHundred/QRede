@@ -28,9 +28,9 @@ namespace QRede.Droid.Services
                     Format = ZXing.BarcodeFormat.QR_CODE,
                     Options = new ZXing.Common.EncodingOptions
                     {
-                        Width = 0,
-                        Height = 50,
-                        Margin = 10
+                        Width = 500,
+                        Height = 500,
+                        Margin = 2
                     }
                 };
 
@@ -40,17 +40,6 @@ namespace QRede.Droid.Services
                 qrBitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);  // this is the diff between iOS and Android
                 stream.Position = 0;
                 return stream.ToArray();
-
-                /*
-                int size = qrBitmap.ByteCount;
-                byte[] byteArray = new byte[size];
-                ByteBuffer byteBuffer = ByteBuffer.Allocate(size);
-                qrBitmap.CopyPixelsToBuffer(byteBuffer);
-                byteBuffer.Rewind();
-                byteBuffer.Get(byteArray);
-
-                return byteArray;
-                */
             });
         }
     }

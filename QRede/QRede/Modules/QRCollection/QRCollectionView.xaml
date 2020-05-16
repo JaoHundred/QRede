@@ -15,7 +15,10 @@
         <c:ByteVectorToImageConverter x:Key="ByteToImage"/>
     </ContentPage.Resources>
     <Grid>
-        <CollectionView ItemsSource="{Binding WifiSummaryCollection}">
+        <CollectionView ItemsSource="{Binding WifiSummaryCollection}" Margin="5,2">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:WifiSummary">
                     <Frame CornerRadius="10" BackgroundColor="Transparent" 
@@ -26,20 +29,22 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="0.75*"/>
                                 <ColumnDefinition Width="0.15*"/>
                             </Grid.ColumnDefinitions>
                             <Image Grid.Row="0"  Margin="5,0,0,0"
-                                   Source="{Binding QRCodeAsBytes,Converter={StaticResource ByteToImage}}"/>
-                            <Grid Grid.Row="0" Grid.Column="1" Margin="5" >
-                                <Image Source="TrashSample.png" 
-                                       VerticalOptions="Start"/>
+                                   Source="{Binding QRCodeAsBytes,Converter={StaticResource ByteToImage}}"
+                                   HorizontalOptions="Start"/>
+                            <Grid Grid.Row="0" Grid.Column="1" Margin="5" VerticalOptions="Start" >
+                                <Image Source="TrashSample.png"/>
                                 <Button BackgroundColor="Transparent"
                                         Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
                                         CommandParameter="{Binding .}"/>
                             </Grid>
                             <Label Grid.Row="1" Text="{Binding SSID}" 
-                                   Margin="5,0,0,0"/>
+                                   Margin="5,0,0,0" Grid.ColumnSpan="2"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
                         </Grid>
                     </Frame>
                 </DataTemplate>
