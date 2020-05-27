@@ -15,6 +15,10 @@ using magno = MvvmHelpers.Commands;
 using Rg.Plugins;
 using QRede.Modules;
 using Rg.Plugins.Popup.Pages;
+using FluentValidation;
+using QRede.Model.Validator;
+using FluentValidation.Results;
+using System.Linq;
 
 namespace QRede.Modules
 {
@@ -24,11 +28,10 @@ namespace QRede.Modules
 
         public HomeViewModel()
         {
-
             LoadTask = LoadAsync();
             GenerateQRCodeCommand = new magno.AsyncCommand(OnGenerateQRCode);
         }
-
+        
         public Task LoadTask { get; }
         public async Task LoadAsync()
         {

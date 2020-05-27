@@ -138,6 +138,9 @@
   <data name="Password" xml:space="preserve">
     <value>Senha:</value>
   </data>
+  <data name="PasswordIsInvalid" xml:space="preserve">
+    <value>Só é permitido senhas alfanuméricas, caráctere errado:</value>
+  </data>
   <data name="SavedWifi" xml:space="preserve">
     <value>Código QR salvo com sucesso</value>
   </data>

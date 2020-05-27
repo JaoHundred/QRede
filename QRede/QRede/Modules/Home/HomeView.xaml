@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:QRede.Modules"
              xmlns:conv="clr-namespace:QRede.Converters"
+             xmlns:behavior="clr-namespace:QRede.Behaviors"
              xmlns:resources="clr-namespace:QRede.Language"
              mc:Ignorable="d"
              x:Class="QRede.Modules.HomeView"
@@ -38,7 +39,11 @@
             <Label Grid.Row="1" Grid.Column="1" Text="{Binding WifiState}"/>
             <Label Grid.Row="2" Grid.Column="0" Text="{x:Static resources:Language.Password}"/>
             <Entry Grid.Row="2" Grid.Column="1" IsPassword="True" 
-                   Text="{Binding Password, Mode=TwoWay}"/>
+                   Text="{Binding Password, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <behavior:CheckEntryValidatorBehavior/>
+                </Entry.Behaviors>
+            </Entry>
         </Grid>
         <Button Grid.Row="2" Text="{x:Static resources:Language.GenerateQrCode}" Command="{Binding GenerateQRCodeCommand}"
                 IsEnabled="{Binding SSID, Converter={StaticResource StringToIsVisible}}"/>

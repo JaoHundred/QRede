@@ -124,6 +124,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only alphanumeric password, error character:.
+        /// </summary>
+        public static string PasswordIsInvalid {
+            get {
+                return ResourceManager.GetString("PasswordIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to QR code saved successfully.
         /// </summary>
         public static string SavedWifi {
