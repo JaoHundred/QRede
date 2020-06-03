@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using LiteDB;
 
 namespace QRede
 {
@@ -18,11 +19,10 @@ namespace QRede
 
         public readonly static string themeKey = "AppTheme";
 
-        public static List<WifiSummary> WifiSummaryCollection;
+        public static LiteDatabase liteDatabase; 
 
         protected override async void OnStart()
         {
-            WifiSummaryCollection = await IOService<WifiSummary>.ReadAsync(Constants.QrCodeFilePath);
             if (App.Current.Properties.ContainsKey(themeKey))
             {
                 int themeId = Convert.ToInt32(App.Current.Properties[themeKey]);
@@ -31,7 +31,12 @@ namespace QRede
             }
             else
                 App.Current.Properties.Add(themeKey, 0);
-
+            BsonMapper bsonMapper = BsonMapper.Global;
+            bsonMapper.Entity<WifiSummary>().Id(x => x.Id)
+                .Ignore(x=>x.WifiState)
+                .Ignore(x=>x.ImagePath)
+                .Ignore(x=>x.BarcodeFormat);
+            liteDatabase = new LiteDatabase($"Filename={Constants.QrCodeFilePath}", bsonMapper);
             await App.Current.SavePropertiesAsync();
         }
 

@@ -6,18 +6,23 @@ using System.Security;
 using System.Text;
 using MvvmHelpers;
 using ZXing;
-using Newtonsoft.Json;
 using System.IO;
 
 namespace QRede.Model
 {
-    [JsonObject]
     public class WifiSummary : ObservableObject
     {
         public WifiSummary(BarcodeFormat barcodeFormat)
         {
             BarcodeFormat = barcodeFormat;
         }
+        
+        public WifiSummary()
+        {
+            
+        }
+
+        public int Id { get; set; }
 
         public string SSID { get; set; }
 
@@ -30,7 +35,6 @@ namespace QRede.Model
         }
 
         private string wifiState;
-        [JsonIgnore]
         public string WifiState
         {
             get { return wifiState; }
@@ -38,7 +42,6 @@ namespace QRede.Model
         }
 
         private string imagePath;
-        [JsonIgnore]
         public string ImagePath
         {
             get { return imagePath; }
@@ -46,7 +49,6 @@ namespace QRede.Model
         }
 
         private BarcodeFormat barcodeFormat;
-        [JsonIgnore]
         public BarcodeFormat BarcodeFormat
         {
             get { return barcodeFormat; }

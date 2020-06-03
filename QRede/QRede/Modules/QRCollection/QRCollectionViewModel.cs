@@ -17,18 +17,17 @@ namespace QRede.Modules
         public QRCollectionViewModel()
         {
             WifiSummaryCollection = new ObservableRangeCollection<WifiSummary>();
-            DeleteCommand = new AsyncCommand<WifiSummary>(OnDelete);
+            DeleteCommand = new Command<WifiSummary>(OnDelete);
         }
 
         public ObservableRangeCollection<WifiSummary> WifiSummaryCollection { get; set; }
 
         public ICommand DeleteCommand { get; set; }
 
-        private async Task OnDelete(WifiSummary wifiSummary)
+        private void OnDelete(WifiSummary wifiSummary)
         {
             WifiSummaryCollection.Remove(wifiSummary);
-            App.WifiSummaryCollection.Remove(wifiSummary);
-            await IOService<List<WifiSummary>>.WriteAsync(App.WifiSummaryCollection, Constants.QrCodeFilePath);
+            App.liteDatabase.GetCollection<WifiSummary>().Delete(wifiSummary.Id);
 
         }
 
@@ -36,7 +35,7 @@ namespace QRede.Modules
         {
             await Task.Run(() =>
             {
-                WifiSummaryCollection.ReplaceRange(App.WifiSummaryCollection);
+                WifiSummaryCollection.ReplaceRange(App.liteDatabase.GetCollection<WifiSummary>().FindAll());
             });
         }
     }

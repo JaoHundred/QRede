@@ -36,8 +36,7 @@ namespace QRede.Modules
 
             CurrentWifiSummary.QRCodeAsBytes = await qrCodeTask;
 
-            App.WifiSummaryCollection.Add(CurrentWifiSummary);
-            await IOService<List<WifiSummary>>.WriteAsync(App.WifiSummaryCollection, Constants.QrCodeFilePath);
+            App.liteDatabase.GetCollection<WifiSummary>().Insert(CurrentWifiSummary);
             DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.SavedWifi);
 
             await NavigationService.PopModalAsync();
