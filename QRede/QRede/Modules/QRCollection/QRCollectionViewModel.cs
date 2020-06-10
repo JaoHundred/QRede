@@ -5,10 +5,11 @@ using System.Collections.ObjectModel;
 using System.Text;
 using QRede.Interfaces;
 using MvvmHelpers;
-using MvvmHelpers.Commands;
+using magno = MvvmHelpers.Commands;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRede.Services;
+using Xamarin.Forms;
 
 namespace QRede.Modules
 {
@@ -17,7 +18,8 @@ namespace QRede.Modules
         public QRCollectionViewModel()
         {
             WifiSummaryCollection = new ObservableRangeCollection<WifiSummary>();
-            DeleteCommand = new Command<WifiSummary>(OnDelete);
+            DeleteCommand = new magno.Command<WifiSummary>(OnDelete);
+            ConnectCommand = new magno.AsyncCommand<WifiSummary>(OnConnect);
         }
 
         public ObservableRangeCollection<WifiSummary> WifiSummaryCollection { get; set; }
@@ -28,7 +30,12 @@ namespace QRede.Modules
         {
             WifiSummaryCollection.Remove(wifiSummary);
             App.liteDatabase.GetCollection<WifiSummary>().Delete(wifiSummary.Id);
+        }
 
+        public ICommand ConnectCommand { get; set; }
+        private async Task OnConnect(WifiSummary wifiSummary)
+        {
+            await DependencyService.Get<IConnectivityService>().Connect(wifiSummary.FormatedWifiString);
         }
 
         public async Task LoadAsync()
