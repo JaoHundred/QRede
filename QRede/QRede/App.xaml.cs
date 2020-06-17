@@ -30,7 +30,10 @@ namespace QRede
                 await ThemeService.ChangeThemeAsync(themeId);
             }
             else
-                App.Current.Properties.Add(themeKey, 0);
+            //1 é tema claro, garante que a aplicação em estado limpo(instalado pela primeira vez)
+            //não vai trocar de tema sozinho quando abrir pela segunda vez
+                App.Current.Properties.Add(themeKey, 1);
+
             BsonMapper bsonMapper = BsonMapper.Global;
             bsonMapper.Entity<WifiSummary>().Id(x => x.Id)
                 .Ignore(x=>x.WifiState)
