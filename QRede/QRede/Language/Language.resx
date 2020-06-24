@@ -120,14 +120,23 @@
   <data name="Alredy" xml:space="preserve">
     <value>Already Connected</value>
   </data>
+  <data name="Conect" xml:space="preserve">
+    <value>Conect</value>
+  </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Dark mode</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Cannot Conect. Try Again</value>
   </data>
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Generate QR Code</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
   </data>
   <data name="Invalid" xml:space="preserve">
     <value>Invalid QR Code</value>
@@ -141,8 +150,14 @@
   <data name="PasswordIsInvalid" xml:space="preserve">
     <value>Only alphanumeric password, error character:</value>
   </data>
+  <data name="SavedQRCode" xml:space="preserve">
+    <value>Saved QR Code</value>
+  </data>
   <data name="SavedWifi" xml:space="preserve">
     <value>QR code saved successfully</value>
+  </data>
+  <data name="Scanner" xml:space="preserve">
+    <value>Scanner</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>

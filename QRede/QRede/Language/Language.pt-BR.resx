@@ -120,14 +120,23 @@
   <data name="Alredy" xml:space="preserve">
     <value>Já conectado</value>
   </data>
+  <data name="Conect" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Modo escuro</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Deletar</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Não foi possível conectar, tente de novo</value>
   </data>
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Gerar Código QR</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Início </value>
   </data>
   <data name="Invalid" xml:space="preserve">
     <value>Código QR Invalido</value>
@@ -141,8 +150,14 @@
   <data name="PasswordIsInvalid" xml:space="preserve">
     <value>Só é permitido senhas alfanuméricas, caráctere errado:</value>
   </data>
+  <data name="SavedQRCode" xml:space="preserve">
+    <value>Códigos QR Salvos</value>
+  </data>
   <data name="SavedWifi" xml:space="preserve">
     <value>Código QR salvo com sucesso</value>
+  </data>
+  <data name="Scanner" xml:space="preserve">
+    <value>Scanner</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Configurações</value>

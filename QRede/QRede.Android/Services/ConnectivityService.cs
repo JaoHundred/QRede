@@ -66,9 +66,15 @@ namespace QRede.Droid.Services
                     var network = wifiManager.ConfiguredNetworks
                          .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
                     var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
-                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    int counter = 0;   
+                    while(info != SSID && counter<10)
+                    {
+                        info = GetCurrentWifiName();
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                        counter++;
+                    }
                     info = GetCurrentWifiName();
-                    if (info==SSID)
+                    if (info == SSID)
                     {
                         toastService.ToastLongMessage(Language.Language.Sucess);
                     }
