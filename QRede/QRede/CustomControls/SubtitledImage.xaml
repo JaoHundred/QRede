@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="QRede.CustomControls.SubtitledImage"
+             x:Name="SubtitledImageName">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <i:CachedImage Source="{Binding ImageSource, Source={x:Reference SubtitledImageName}}" HeightRequest="50"/>
+        <Label Grid.Row="1" Text="{Binding ImageText,Source={x:Reference SubtitledImageName}}" FontSize="Small" HorizontalOptions="Center"/>
+        <Button BackgroundColor="Transparent" Grid.RowSpan="2" Clicked="Button_Clicked"
+                                        Command="{Binding Command, Source={x:Reference SubtitledImageName}}"
+                                        CommandParameter="{Binding CommandParameter, Source={x:Reference SubtitledImageName}}"/>
+    </Grid>
+</ContentView>

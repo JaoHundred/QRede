@@ -7,6 +7,7 @@
              xmlns:m="clr-namespace:QRede.Model"
              xmlns:c="clr-namespace:QRede.Converters"
              xmlns:i="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:Custom="clr-namespace:QRede.CustomControls"
              xmlns:resources="clr-namespace:QRede.Language"
              mc:Ignorable="d"
              Appearing="OnApeared"
@@ -37,28 +38,20 @@
                             <Image Grid.Row="0"  Margin="5,0,0,0"
                                    Source="{Binding QRCodeAsBytes,Converter={StaticResource ByteToImage}}"
                                    HorizontalOptions="Start"/>
-                            <Grid Grid.Row="0" Grid.Column="1" Margin="5" VerticalOptions="Start">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <i:CachedImage Source="TrashSample.png" HeightRequest="50"/>
-                                <Label Grid.Row="1" Text="{x:Static resources:Language.Delete }" FontSize="Small" HorizontalOptions="Center"/>
-                                <Button BackgroundColor="Transparent" Grid.RowSpan="2"
-                                        Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
-                                        CommandParameter="{Binding .}"/>
-                            </Grid>
-                            <Grid Grid.Row="0" Grid.Column="1" Margin="0,5,0,0" VerticalOptions="End">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <i:CachedImage Source="ConnectIcon.png" HeightRequest="50"/>
-                                <Label Grid.Row="1" Text="{x:Static resources:Language.Conect}" FontSize="Small" HorizontalOptions="Center"/>
-                                <Button BackgroundColor="Transparent"
-                                        Command="{Binding BindingContext.ConnectCommand, Source={x:Reference page}}"
-                                        CommandParameter="{Binding .}" Grid.RowSpan="2"/>
-                            </Grid>
+                            <Custom:SubtitledImage ImageText="{x:Static resources:Language.Delete}"
+                                                   ImageSource="TrashSample.png"
+                                                   Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
+                                                   CommandParameter="{Binding .}"
+                                                   Grid.Row="0" Grid.Column="1"
+                                                   Margin="5"
+                                                   VerticalOptions="Start"/>
+                            <Custom:SubtitledImage ImageText="{x:Static resources:Language.Conect}"
+                                                   ImageSource="ConnectIcon.png"
+                                                   Command="{Binding BindingContext.ConnectCommand, Source={x:Reference page}}"
+                                                   CommandParameter="{Binding .}"
+                                                   Grid.Row="0" Grid.Column="1"
+                                                   Margin="0,5,0,0"
+                                                   VerticalOptions="End"/>                            
                             <Label Grid.Row="1" Text="{Binding SSID}" 
                                    Margin="5,5,0,0" Grid.ColumnSpan="2"
                                    HorizontalTextAlignment="Center"
