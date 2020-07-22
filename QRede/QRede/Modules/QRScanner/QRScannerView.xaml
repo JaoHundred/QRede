@@ -9,8 +9,9 @@
              x:Class="QRede.Modules.QRScannerView"
              Appearing="OnPageAppearing">
     <ContentPage.Content>
-        <StackLayout>
-            <qrcodeMobileForms:ZXingScannerView ScanResultCommand="{Binding ScanCommand}" Result="{Binding Result, Mode=TwoWay}" x:Name="BarcodeScanView" IsVisible="true" IsScanning="True"/>
-        </StackLayout>
+        <Grid>
+            <qrcodeMobileForms:ZXingScannerView ScanResultCommand="{Binding ScanCommand}" 
+                                                Result="{Binding Result, Mode=TwoWay}" x:Name="BarcodeScanView" IsVisible="true" IsScanning="True"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
