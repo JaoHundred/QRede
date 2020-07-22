@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="QRede.Shapes.RectangleBorderShape"
+             HorizontalOptions="Center" VerticalOptions="Center" >
+    
+    <Grid>
+
+        <Line StrokeThickness="30" Stroke="Black" X1="0" Y2="50"/>
+        <Line StrokeThickness="30" Stroke="Black" X1="50" Y2="0"/>
+
+        <Line StrokeThickness="15" Stroke="Black" X1="150" X2="150" Y2="50"/>
+        <Line StrokeThickness="30" Stroke="Black" X1="150" X2="105" />
+        
+        <Line StrokeThickness="30" Stroke="Black" Y1="105" Y2="150" />
+        <Line StrokeThickness="15" Stroke="Black" Y1="150" Y2="150" X1="50" />
+
+        <Line StrokeThickness="15" Stroke="Black" X1="150" X2="150" Y1="105" Y2="150"/>
+        <Line StrokeThickness="15" Stroke="Black" X1="157.5" X2="105" Y1="150" Y2="150" />
+
+    </Grid>
+</ContentView>
