@@ -65,8 +65,15 @@ namespace QRede.Droid.Services
                     var addNetwork = wifiManager.AddNetwork(wifiConfig);
                     var network = wifiManager.ConfiguredNetworks
                          .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
+
+                    //TODO: checar antes se é possível se conectar a rede que você está escaneando, se não for, não executar o 
+                    //enable network
+
                     var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
                     int counter = 0;   
+
+                    //TODO: revisar a parte do delay, ele faz demorar muito tempo para a mensagem de tooltip ser exibida
+                    //
                     while(info != SSID && counter<10)
                     {
                         info = GetCurrentWifiName();

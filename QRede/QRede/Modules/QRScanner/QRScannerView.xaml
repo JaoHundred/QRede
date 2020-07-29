@@ -9,16 +9,17 @@
              xmlns:custom="clr-namespace:QRede.CustomControls"
              mc:Ignorable="d"
              x:Class="QRede.Modules.QRScannerView"
-             Appearing="OnPageAppearing">
+             Appearing="OnPageAppearing"
+             Disappearing="OnDisappearing">
     <ContentPage.Content>
         <Grid>
             <qrcodeMobileForms:ZXingScannerView ScanResultCommand="{Binding ScanCommand}" 
                                                 Result="{Binding Result, Mode=TwoWay}" 
                                                 x:Name="BarcodeScanView" IsVisible="true" IsScanning="True"/>
 
-            <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                <QrShape:RectangleBorderShape/>
-            </Grid>
+            <Grid VerticalOptions="Center" HorizontalOptions="Center"
+                  x:Name="ShapeGrid"/>
+
 
         </Grid>
     </ContentPage.Content>

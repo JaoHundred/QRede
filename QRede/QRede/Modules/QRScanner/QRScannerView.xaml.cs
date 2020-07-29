@@ -18,10 +18,17 @@ namespace QRede.Modules
             BindingContext = new QRScannerViewModel();
         }
 
-        private void OnPageAppearing(object sender, EventArgs e)
+        private async void OnPageAppearing(object sender, EventArgs e)
         {
+            ShapeGrid.Children.Add(new Shapes.RectangleBorderShape());
+            
             //TODO: verificar linha abaixo pra saber se o delay ajuda ao QRCode funcionar(fazer mais alguns testes)
-            Task.Run(async () => { await Task.Delay(TimeSpan.FromSeconds(4)); });
+            await Task.Delay(TimeSpan.FromSeconds(4));
+        }
+
+        private void OnDisappearing(object sender, EventArgs e)
+        {
+            ShapeGrid.Children.RemoveAt(0);
         }
     }
 }

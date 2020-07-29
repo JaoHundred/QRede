@@ -12,14 +12,14 @@
         <Line StrokeThickness="30" Stroke="Black" X1="0" Y2="50"/>
         <Line StrokeThickness="30" Stroke="Black" X1="50" Y2="0"/>
 
-        <Line StrokeThickness="15" Stroke="Black" X1="150" X2="150" Y2="50"/>
-        <Line StrokeThickness="30" Stroke="Black" X1="150" X2="105" />
+        <Line StrokeThickness="15" Stroke="Black" X1="180" X2="180" Y2="50"/>
+        <Line StrokeThickness="30" Stroke="Black" X1="180" X2="135" />
         
-        <Line StrokeThickness="30" Stroke="Black" Y1="105" Y2="150" />
-        <Line StrokeThickness="15" Stroke="Black" Y1="150" Y2="150" X1="50" />
+        <Line StrokeThickness="30" Stroke="Black" Y1="115" Y2="160" />
+        <Line StrokeThickness="15" Stroke="Black" Y1="160" Y2="160" X1="50" X2="-1"/>
 
-        <Line StrokeThickness="15" Stroke="Black" X1="150" X2="150" Y1="105" Y2="150"/>
-        <Line StrokeThickness="15" Stroke="Black" X1="157.5" X2="105" Y1="150" Y2="150" />
+        <Line StrokeThickness="15" Stroke="Black" X1="180" X2="180" Y1="115" Y2="160"/>
+        <Line StrokeThickness="15" Stroke="Black" X1="187.5" X2="135" Y1="160" Y2="160" />
 
     </Grid>
 </ContentView>
