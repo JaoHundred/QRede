@@ -174,4 +174,7 @@
   <data name="WiFiStateOn" xml:space="preserve">
     <value>Conectado</value>
   </data>
+  <data name="WifiUnreacheable" xml:space="preserve">
+    <value>Wifi fora de Alcance</value>
+  </data>
 </root>

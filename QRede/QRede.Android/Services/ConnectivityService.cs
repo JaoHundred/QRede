@@ -54,7 +54,8 @@ namespace QRede.Droid.Services
                 string password = parser[6];
                 WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
                 string info = GetCurrentWifiName();
-                if (info != SSID)
+                bool canConnect = CanConnect(wifiManager, SSID);
+                if (info != SSID && canConnect)
                 {
 
                     var wifiConfig = new WifiConfiguration
@@ -67,7 +68,7 @@ namespace QRede.Droid.Services
                          .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
                     var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
                     int counter = 0;   
-                    while(info != SSID && counter<10)
+                    while(info != SSID && counter<5)
                     {
                         info = GetCurrentWifiName();
                         await Task.Delay(TimeSpan.FromSeconds(2));
@@ -83,6 +84,10 @@ namespace QRede.Droid.Services
                         toastService.ToastLongMessage(Language.Language.Fail);
                     }
                 }
+                else if(!canConnect)
+                {
+                    toastService.ToastLongMessage(Language.Language.WifiUnreacheable);
+                }
                 else
                 {
                     toastService.ToastLongMessage(Language.Language.Alredy);
@@ -94,6 +99,12 @@ namespace QRede.Droid.Services
             }
             return;
         }
+
+        private bool CanConnect(WifiManager wifiManager, string Target) 
+        {
+            return wifiManager.ScanResults.Any(scanResult => scanResult.Ssid == Target) ;
+        }            
+
 
         public string GetCurrentWifiName()
         {
