@@ -54,7 +54,8 @@ namespace QRede.Droid.Services
                 string password = parser[6];
                 WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
                 string info = GetCurrentWifiName();
-                if (info != SSID)
+                bool canConnect = CanConnect(wifiManager, SSID);
+                if (info != SSID && canConnect)
                 {
 
                     var wifiConfig = new WifiConfiguration
@@ -65,16 +66,9 @@ namespace QRede.Droid.Services
                     var addNetwork = wifiManager.AddNetwork(wifiConfig);
                     var network = wifiManager.ConfiguredNetworks
                          .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
-
-                    //TODO: checar antes se é possível se conectar a rede que você está escaneando, se não for, não executar o 
-                    //enable network
-
                     var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
                     int counter = 0;   
-
-                    //TODO: revisar a parte do delay, ele faz demorar muito tempo para a mensagem de tooltip ser exibida
-                    //
-                    while(info != SSID && counter<10)
+                    while(info != SSID && counter<5)
                     {
                         info = GetCurrentWifiName();
                         await Task.Delay(TimeSpan.FromSeconds(2));
@@ -90,6 +84,10 @@ namespace QRede.Droid.Services
                         toastService.ToastLongMessage(Language.Language.Fail);
                     }
                 }
+                else if(!canConnect)
+                {
+                    toastService.ToastLongMessage(Language.Language.WifiUnreacheable);
+                }
                 else
                 {
                     toastService.ToastLongMessage(Language.Language.Alredy);
@@ -101,6 +99,12 @@ namespace QRede.Droid.Services
             }
             return;
         }
+
+        private bool CanConnect(WifiManager wifiManager, string Target) 
+        {
+            return wifiManager.ScanResults.Any(scanResult => scanResult.Ssid == Target) ;
+        }            
+
 
         public string GetCurrentWifiName()
         {

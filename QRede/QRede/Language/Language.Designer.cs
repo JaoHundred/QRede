@@ -230,5 +230,14 @@ namespace QRede.Language {
                 return ResourceManager.GetString("WiFiStateOn", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Wifi out of range.
+        /// </summary>
+        public static string WifiUnreacheable {
+            get {
+                return ResourceManager.GetString("WifiUnreacheable", resourceCulture);
+            }
+        }
     }
 }
