@@ -121,7 +121,7 @@
     <value>Already Connected</value>
   </data>
   <data name="Conect" xml:space="preserve">
-    <value>Conect</value>
+    <value>Connect</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Dark mode</value>
@@ -130,7 +130,7 @@
     <value>Delete</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Cannot Conect. Try Again</value>
+    <value>Cannot Connect. Try Again</value>
   </data>
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Generate QR Code</value>
@@ -172,7 +172,7 @@
     <value>Disconected</value>
   </data>
   <data name="WiFiStateOn" xml:space="preserve">
-    <value>Conected</value>
+    <value>Connected</value>
   </data>
   <data name="WifiUnreacheable" xml:space="preserve">
     <value>Wifi out of range</value>
