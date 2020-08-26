@@ -150,6 +150,9 @@
   <data name="PasswordIsInvalid" xml:space="preserve">
     <value>Só é permitido senhas alfanuméricas, caráctere errado:</value>
   </data>
+  <data name="QRCodeSearch" xml:space="preserve">
+    <value>Pesquisar</value>
+  </data>
   <data name="SavedQRCode" xml:space="preserve">
     <value>Códigos QR Salvos</value>
   </data>

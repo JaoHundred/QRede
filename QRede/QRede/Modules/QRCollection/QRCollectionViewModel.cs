@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using QRede.Services;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace QRede.Modules
 {
@@ -20,15 +21,22 @@ namespace QRede.Modules
             WifiSummaryCollection = new ObservableRangeCollection<WifiSummary>();
             DeleteCommand = new magno.Command<WifiSummary>(OnDelete);
             ConnectCommand = new magno.AsyncCommand<WifiSummary>(OnConnect);
+            SearchCommand = new magno.AsyncCommand(OnSearch);
         }
 
+        public string QRSearch { get; set; }
+
+
         public ObservableRangeCollection<WifiSummary> WifiSummaryCollection { get; set; }
+
+        private List<WifiSummary> OriginalWifiSummaryCollection;
 
         public ICommand DeleteCommand { get; set; }
 
         private void OnDelete(WifiSummary wifiSummary)
         {
             WifiSummaryCollection.Remove(wifiSummary);
+            OriginalWifiSummaryCollection.Remove(wifiSummary);
             App.liteDatabase.GetCollection<WifiSummary>().Delete(wifiSummary.Id);
         }
 
@@ -38,11 +46,24 @@ namespace QRede.Modules
             await DependencyService.Get<IConnectivityService>().Connect(wifiSummary.FormatedWifiString);
         }
 
+        public ICommand SearchCommand { get; set; }
+
+        private async Task OnSearch()
+        {
+            var task = Task.Run(() =>
+            {
+                return OriginalWifiSummaryCollection.Where(wifiSummary => wifiSummary.SSID.ToLower().Contains(QRSearch.ToLower()));
+            });
+            
+            WifiSummaryCollection.ReplaceRange(await task);
+        }
+
         public async Task LoadAsync()
         {
             await Task.Run(() =>
             {
-                WifiSummaryCollection.ReplaceRange(App.liteDatabase.GetCollection<WifiSummary>().FindAll());
+                OriginalWifiSummaryCollection = App.liteDatabase.GetCollection<WifiSummary>().FindAll().ToList();
+                WifiSummaryCollection.ReplaceRange(OriginalWifiSummaryCollection);
             });
         }
     }

@@ -150,6 +150,9 @@
   <data name="PasswordIsInvalid" xml:space="preserve">
     <value>Only alphanumeric password, error character:</value>
   </data>
+  <data name="QRCodeSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="SavedQRCode" xml:space="preserve">
     <value>Saved QR Code</value>
   </data>

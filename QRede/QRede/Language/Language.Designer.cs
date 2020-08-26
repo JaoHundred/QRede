@@ -160,6 +160,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Search.
+        /// </summary>
+        public static string QRCodeSearch {
+            get {
+                return ResourceManager.GetString("QRCodeSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Saved QR Code.
         /// </summary>
         public static string SavedQRCode {
