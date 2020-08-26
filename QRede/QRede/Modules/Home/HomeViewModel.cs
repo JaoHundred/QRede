@@ -31,26 +31,42 @@ namespace QRede.Modules
             LoadTask = LoadAsync();
             GenerateQRCodeCommand = new magno.AsyncCommand(OnGenerateQRCode);
         }
-        
+
         public Task LoadTask { get; }
         public async Task LoadAsync()
         {
             await Task.Run(() =>
             {
+                var connectivityAndroid = DependencyService.Get<IConnectivityService>();
+                var wifiStrenghtService = DependencyService.Get<IWIFIStrenghtService>();
+
                 Device.StartTimer(TimeSpan.FromSeconds(2), () =>
                 {
-                    var connectivityAndroid = DependencyService.Get<IConnectivityService>();
                     SSID = connectivityAndroid.GetCurrentWifiName();
 
-                    if (string.IsNullOrEmpty(SSID))
+                    int strenght = wifiStrenghtService.CalculateStrenght();
+
+                    switch (strenght)
                     {
-                        WifiState = Language.Language.WiFiStateOff;
-                        ImagePath = "WiFiDisconected.png";
-                    }
-                    else
-                    {
-                        WifiState = Language.Language.WiFiStateOn;
-                        ImagePath = "WiFiFull.png";
+                        case int str when strenght == 0:
+                            WifiState = Language.Language.WiFiStateOff;
+                            ImagePath = "WiFiDisconected.png";
+                            break;
+
+                        case int str when strenght == 1:
+                            WifiState = Language.Language.WiFiStateOn;
+                            ImagePath = "WiFiLow.png";
+                            break;
+
+                        case int str when strenght == 2:
+                            WifiState = Language.Language.WiFiStateOn;
+                            ImagePath = "WiFiMedium.png";
+                            break;
+
+                        case int str when strenght == 3:
+                            WifiState = Language.Language.WiFiStateOn;
+                            ImagePath = "WiFiFull.png";
+                            break;
                     }
 
                     return true;

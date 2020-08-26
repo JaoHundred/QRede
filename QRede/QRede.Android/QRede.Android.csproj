@@ -92,6 +92,7 @@
     <Compile Include="Services\BarcodeService.cs" />
     <Compile Include="Services\ConnectivityService.cs" />
     <Compile Include="Services\ToastService.cs" />
+    <Compile Include="Services\WIFIStrenghtService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
