@@ -22,5 +22,16 @@ namespace QRede.Modules
         {
             await (BindingContext as QRCollectionViewModel).LoadAsync();
         }
+
+        private void OnSearchIconTapped(object sender, EventArgs e)
+        {
+            EntrySearch.IsVisible = true;
+            EntrySearch.Focus();
+        }
+
+        private void OnLostFocus(object sender, FocusEventArgs e)
+        {
+            EntrySearch.IsVisible = false;
+        }
     }
 }

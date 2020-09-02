@@ -160,6 +160,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string QRCodeSearch {
+            get {
+                return ResourceManager.GetString("QRCodeSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saved QR Code.
         /// </summary>
         public static string SavedQRCode {
@@ -192,6 +201,24 @@ namespace QRede.Language {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort By Ascending.
+        /// </summary>
+        public static string SortByAscending {
+            get {
+                return ResourceManager.GetString("SortByAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort By Descending.
+        /// </summary>
+        public static string SortByDescending {
+            get {
+                return ResourceManager.GetString("SortByDescending", resourceCulture);
             }
         }
         

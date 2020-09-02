@@ -19,15 +19,40 @@
         <c:ByteVectorToImageConverter x:Key="ByteToImage"/>
     </ContentPage.Resources>
     <Shell.TitleView>
-        <Grid>
-            <Entry Placeholder="{x:Static resources:Language.QRCodeSearch}" Text="{Binding QRSearch}" >
+        <Grid ColumnDefinitions="*,auto">
+            <Entry x:Name="EntrySearch" Placeholder="{x:Static resources:Language.QRCodeSearch}" Text="{Binding QRSearch}" 
+                   IsVisible="False" PlaceholderColor="#d9d9d9" TextColor="#d9d9d9" Unfocused="OnLostFocus">
+                
                 <Entry.Behaviors>
                     <behavior:EventToCommandBehavior EventName="TextChanged" 
                                                      Command="{Binding SearchCommand}"/>
                 </Entry.Behaviors>
             </Entry>
+            
+            <i:CachedImage Grid.Column="1" HorizontalOptions="End" HeightRequest="20">
+                
+                <i:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSearchIconTapped"/>
+                </i:CachedImage.GestureRecognizers>
+                
+                <i:CachedImage.Triggers>
+                    <DataTrigger TargetType="i:CachedImage" Binding="{Binding IsDarkTheme}" Value="True" >
+                        <Setter Property="Source" Value="LupaClaro.png"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="i:CachedImage" Binding="{Binding IsDarkTheme}" Value="False" >
+                        <Setter Property="Source" Value="LupaEscuro.png"/>
+                    </DataTrigger>
+                </i:CachedImage.Triggers>
+                
+            </i:CachedImage>
         </Grid>
     </Shell.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding OrderText}" Order="Secondary" Command="{Binding SortByWordsCommand}"/>
+
+    </ContentPage.ToolbarItems>
+    
     <Grid>
         <CollectionView ItemsSource="{Binding WifiSummaryCollection}" Margin="5,2">
             <CollectionView.ItemsLayout>

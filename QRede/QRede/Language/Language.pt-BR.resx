@@ -165,6 +165,12 @@
   <data name="Settings" xml:space="preserve">
     <value>Configurações</value>
   </data>
+  <data name="SortByAscending" xml:space="preserve">
+    <value>Ordenar por crescente</value>
+  </data>
+  <data name="SortByDescending" xml:space="preserve">
+    <value>Ordenar por decrescente</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Estado:</value>
   </data>
