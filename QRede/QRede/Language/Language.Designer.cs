@@ -214,6 +214,24 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sharing.
+        /// </summary>
+        public static string Sharing {
+            get {
+                return ResourceManager.GetString("Sharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort By Ascending.
         /// </summary>
         public static string SortByAscending {

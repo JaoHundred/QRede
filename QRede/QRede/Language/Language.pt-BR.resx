@@ -168,6 +168,12 @@
   <data name="Settings" xml:space="preserve">
     <value>Configurações</value>
   </data>
+  <data name="Share" xml:space="preserve">
+    <value>Compartilhar</value>
+  </data>
+  <data name="Sharing" xml:space="preserve">
+    <value>Compartilhando</value>
+  </data>
   <data name="SortByAscending" xml:space="preserve">
     <value>Ordenar por crescente</value>
   </data>
