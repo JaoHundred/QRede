@@ -116,7 +116,7 @@ namespace QRede.Modules
 
             await QRCodeService.GenerateQRStringAsync(wifiSummary);
 
-            await NavigationService.NavigateAsync<QRCodeViewModel>(wifiSummary);
+            await NavigationService.NavigateAsync<QRCodeViewModel>(wifiSummary, this);
         }
     }
 }

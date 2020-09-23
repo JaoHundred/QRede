@@ -73,7 +73,13 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Row="0"  Margin="5,0,0,0"
                                    Source="{Binding QRCodeAsBytes,Converter={StaticResource ByteToImage}}"
-                                   HorizontalOptions="Start"/>
+                                   HorizontalOptions="Start">
+                                
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.ZoomImageCommand, Source={x:Reference page}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Custom:SubtitledImage ImageText="{x:Static resources:Language.Delete}"
                                                    ImageSource="TrashSample.png"
                                                    Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"

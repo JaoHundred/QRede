@@ -153,6 +153,9 @@
   <data name="QRCodeSearch" xml:space="preserve">
     <value>Pesquisar</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
   <data name="SavedQRCode" xml:space="preserve">
     <value>Códigos QR Salvos</value>
   </data>

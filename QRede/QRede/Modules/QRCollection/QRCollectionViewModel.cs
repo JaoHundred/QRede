@@ -25,6 +25,7 @@ namespace QRede.Modules
             ConnectCommand = new magno.AsyncCommand<WifiSummary>(OnConnect);
             SearchCommand = new magno.AsyncCommand(OnSearch);
             SortByWordsCommand = new magno.AsyncCommand(OnSortByWords);
+            ZoomImageCommand = new magno.AsyncCommand<WifiSummary>(OnZoomImage);
 
             OrderText = Language.Language.SortByAscending;
         }
@@ -98,6 +99,17 @@ namespace QRede.Modules
             });
 
             WifiSummaryCollection.ReplaceRange(await task);
+        }
+
+        public ICommand ZoomImageCommand { get; private set; }
+        private async Task OnZoomImage(WifiSummary wifiSummary)
+        {
+            if (IsNotBusy)
+            {
+                IsBusy = true;
+                await NavigationService.NavigateAsync<QRCodeViewModel>(wifiSummary, this);
+                IsBusy = false;
+            }
         }
         #endregion
 

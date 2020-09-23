@@ -14,10 +14,17 @@ namespace QRede.Modules
 {
     class QRCodeViewModel : BaseViewModel
     {
-        public QRCodeViewModel(WifiSummary formatedWifiString)
+        public QRCodeViewModel(WifiSummary formatedWifiString, BaseViewModel contextViewModel)
         {
             CurrentWifiSummary = formatedWifiString;
-            SaveCommand = new MvvmHelpers.Commands.AsyncCommand(OnSave);
+
+            if (contextViewModel is HomeViewModel)
+            {
+                IsHomeViewModel = true;
+                SaveCommand = new MvvmHelpers.Commands.AsyncCommand(OnSave);
+            }
+            else
+                IsHomeViewModel = false;
         }
 
         private WifiSummary currentWifiSummary;
@@ -26,6 +33,13 @@ namespace QRede.Modules
         {
             get { return currentWifiSummary; }
             set { SetProperty(ref currentWifiSummary, value); }
+        }
+
+        private bool _isHomeViewModel;
+        public bool IsHomeViewModel
+        {
+            get { return _isHomeViewModel; }
+            set { SetProperty(ref _isHomeViewModel, value); }
         }
 
         public ICommand SaveCommand { get; set; }
