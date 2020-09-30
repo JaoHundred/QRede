@@ -32,7 +32,7 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
-    
+
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid Style="{StaticResource FloutItemStyle}"
@@ -43,7 +43,7 @@
                 </Grid.ColumnDefinitions>
                 <Image Source="{Binding Icon}"
                        Margin="5"
-                       HeightRequest="35" IsOpaque="False"/>
+                       HeightRequest="25" IsOpaque="False"/>
                 <Label Grid.Column="1" FontSize="18"
                        Text="{Binding Title}" TextColor="{DynamicResource TextColor}"
                        VerticalTextAlignment="Center" FontAttributes="Bold" />
@@ -60,7 +60,7 @@
     <FlyoutItem Title="{x:Static resources:Language.SavedQRCode}">
         <ShellContent ContentTemplate="{DataTemplate Views:QRCollectionView}"/>
     </FlyoutItem>
-    <FlyoutItem Title="{x:Static resources:Language.Settings}">
+    <FlyoutItem Title="{x:Static resources:Language.Settings}" Icon="ConfigIcon.png">
         <ShellContent ContentTemplate="{DataTemplate Views:SettingsView}"/>
     </FlyoutItem>
 </Shell>
