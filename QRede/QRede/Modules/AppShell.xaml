@@ -43,7 +43,7 @@
                 </Grid.ColumnDefinitions>
                 <Image Source="{Binding Icon}"
                        Margin="5"
-                       HeightRequest="25" IsOpaque="False"/>
+                       HeightRequest="35" IsOpaque="False" VerticalOptions="Center"/>
                 <Label Grid.Column="1" FontSize="18"
                        Text="{Binding Title}" TextColor="{DynamicResource TextColor}"
                        VerticalTextAlignment="Center" FontAttributes="Bold" />
@@ -51,13 +51,13 @@
         </DataTemplate>
     </Shell.ItemTemplate>
 
-    <FlyoutItem Title="{x:Static resources:Language.Home}">
+    <FlyoutItem Title="{x:Static resources:Language.Home}" Icon="HomeIcon.png">
         <ShellContent ContentTemplate="{DataTemplate Views:HomeView}"/>
     </FlyoutItem>
-    <FlyoutItem Title="{x:Static resources:Language.Scanner}">
+    <FlyoutItem Title="{x:Static resources:Language.Scanner}" Icon="ScannerIcon.png">
         <ShellContent ContentTemplate="{DataTemplate Views:QRScannerView}"/>
     </FlyoutItem>
-    <FlyoutItem Title="{x:Static resources:Language.SavedQRCode}">
+    <FlyoutItem Title="{x:Static resources:Language.SavedQRCode}" Icon="StoragedIcon.png">
         <ShellContent ContentTemplate="{DataTemplate Views:QRCollectionView}"/>
     </FlyoutItem>
     <FlyoutItem Title="{x:Static resources:Language.Settings}" Icon="ConfigIcon.png">
