@@ -176,10 +176,10 @@
     <AndroidResource Include="Resources\drawable\StoragedIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ScannerIcon.png" />
+    <AndroidResource Include="Resources\drawable\HomeIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\HomeIcon.png" />
+    <AndroidResource Include="Resources\drawable\ScannerIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
