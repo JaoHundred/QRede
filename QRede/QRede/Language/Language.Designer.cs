@@ -124,6 +124,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image from gallery is not supported.
+        /// </summary>
+        public static string IncompatibleImage {
+            get {
+                return ResourceManager.GetString("IncompatibleImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid QR Code.
         /// </summary>
         public static string Invalid {

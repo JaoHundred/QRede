@@ -138,6 +138,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="IncompatibleImage" xml:space="preserve">
+    <value>Image from gallery is not supported</value>
+  </data>
   <data name="Invalid" xml:space="preserve">
     <value>Invalid QR Code</value>
   </data>

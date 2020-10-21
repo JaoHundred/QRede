@@ -70,12 +70,12 @@ namespace QRede.Modules
             {
                 IsBusy = true;
 
-                string fullPath = Path.Combine(FileSystem.CacheDirectory, "QRtoShare.png");
-                File.WriteAllBytes(fullPath, currentWifiSummary.QRCodeAsBytes);
+                string fullPath = Path.Combine(FileSystem.CacheDirectory, $"{CurrentWifiSummary.SSID}.png");
+                File.WriteAllBytes(fullPath, CurrentWifiSummary.QRCodeAsBytes);
 
                 //TODO: testar o compartilhamento em um dispositivo real quando o VS estiver funcionando novamente para gerar o APK
 
-                await Share.RequestAsync(new ShareFileRequest($"{Language.Language.Sharing} {currentWifiSummary.SSID}", new ShareFile(fullPath)));
+                await Share.RequestAsync(new ShareFileRequest($"{Language.Language.Sharing} {CurrentWifiSummary.SSID}", new ShareFile(fullPath)));
 
                 IsBusy = false;
             }

@@ -45,6 +45,9 @@
                 </i:CachedImage.Triggers>
                 
             </i:CachedImage>
+
+            <Button Grid.Column="2" Text="IMGG" Command="{Binding GetImageFromGalleryCommand}"/>
+
         </Grid>
     </Shell.TitleView>
 

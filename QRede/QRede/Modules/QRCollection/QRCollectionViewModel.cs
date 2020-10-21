@@ -12,6 +12,7 @@ using QRede.Services;
 using Xamarin.Forms;
 using System.Linq;
 using System.Resources;
+using Xamarin.Essentials;
 
 namespace QRede.Modules
 {
@@ -26,6 +27,7 @@ namespace QRede.Modules
             SearchCommand = new magno.AsyncCommand(OnSearch);
             SortByWordsCommand = new magno.AsyncCommand(OnSortByWords);
             ZoomImageCommand = new magno.AsyncCommand<WifiSummary>(OnZoomImage);
+            GetImageFromGalleryCommand = new MvvmHelpers.Commands.AsyncCommand(GetImageFromGallery);
 
             OrderText = Language.Language.SortByAscending;
         }
@@ -111,6 +113,28 @@ namespace QRede.Modules
                 IsBusy = false;
             }
         }
+
+        public ICommand GetImageFromGalleryCommand { get; private set; }
+        private async Task GetImageFromGallery()
+        {
+            FileResult fileResult = await Xamarin.Essentials.FilePicker.PickAsync(PickOptions.Images);
+
+            if (fileResult != null)
+            {
+                WifiSummary wifiSummary = await DependencyService.Get<IBarcodeService>().GetImageAsWifiSummary(fileResult.FullPath);
+
+                if (wifiSummary == null)
+                {
+                    //TODO: exibir mensagem de erro no toast
+                    DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.IncompatibleImage);
+                    return;
+                }
+
+                WifiSummaryCollection.Add(wifiSummary);
+                App.liteDatabase.GetCollection<WifiSummary>().Upsert(wifiSummary);
+            }
+        }
+
         #endregion
 
         public async Task LoadAsync()

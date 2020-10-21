@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:qrcodeMobileForms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
-             xmlns:qrcodePortable="clr-namespace:ZXing.Common;assembly=zxing.portable"
              xmlns:QrShape="clr-namespace:QRede.Shapes"
              xmlns:custom="clr-namespace:QRede.CustomControls"
              mc:Ignorable="d"
