@@ -125,7 +125,6 @@ namespace QRede.Modules
 
                 if (wifiSummary == null)
                 {
-                    //TODO: exibir mensagem de erro no toast
                     DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.IncompatibleImage);
                     return;
                 }
