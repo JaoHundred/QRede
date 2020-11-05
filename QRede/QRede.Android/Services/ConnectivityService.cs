@@ -17,6 +17,7 @@ using QRede.Droid.Services;
 using QRede.Interfaces;
 using QRede.Language;
 using QRede.Model;
+using QRede.Services;
 using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(QRede.Droid.Services.ConnectivityService))]
@@ -27,83 +28,62 @@ namespace QRede.Droid.Services
         public async Task Connect(string result)
         {
             IToastService toastService = DependencyService.Get<IToastService>();
-            if (string.IsNullOrWhiteSpace(result))
-            {
-                toastService.ToastLongMessage(Language.Language.Invalid);
-                return;
-            }
-            if (!result.ToUpperInvariant().StartsWith("WIFI:", StringComparison.Ordinal))
-            {
-                toastService.ToastLongMessage(Language.Language.Invalid);
-                return;
-            }
-            string[] parser = result.Replace("{", "").Replace("}", "").Split(';', ':');
-            //FORMATO DO PARSER
-            //[0]WIFI
-            //[1]S
-            //[2]SSID
-            //[3]T
-            //[4]WPA
-            //[5]P
-            //[6]SENHA
-            //[7]""
-            //[8]""
-            if (parser?.Length == 9 && parser[1] == "S" && parser[3] == "T" && parser[5] == "P")
-            {
-                string SSID = parser[2];
-                string password = parser[6];
-                WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
-                string info = GetCurrentWifiName();
-                bool canConnect = CanConnect(wifiManager, SSID);
-                if (info != SSID && canConnect)
-                {
 
-                    var wifiConfig = new WifiConfiguration
-                    {
-                        Ssid = $"\"{SSID}\"",
-                        PreSharedKey = $"\"{password.Replace("\"", "")}\""
-                    };
-                    var addNetwork = wifiManager.AddNetwork(wifiConfig);
-                    var network = wifiManager.ConfiguredNetworks
-                         .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
-                    var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
-                    int counter = 0;   
-                    while(info != SSID && counter<5)
-                    {
-                        info = GetCurrentWifiName();
-                        await Task.Delay(TimeSpan.FromSeconds(2));
-                        counter++;
-                    }
-                    info = GetCurrentWifiName();
-                    if (info == SSID)
-                    {
-                        toastService.ToastLongMessage(Language.Language.Sucess);
-                    }
-                    else
-                    {
-                        toastService.ToastLongMessage(Language.Language.Fail);
-                    }
-                }
-                else if(!canConnect)
+            WifiSummary wifiSummary = QRCodeService.ParseQRCodeString(result);
+
+            if (wifiSummary == null)
+            {
+                toastService.ToastLongMessage(Language.Language.Invalid);
+                return;
+            }
+
+            WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
+            string info = GetCurrentWifiName();
+            bool canConnect = CanConnect(wifiManager, wifiSummary.SSID);
+            if (info != wifiSummary.SSID && canConnect)
+            {
+
+                var wifiConfig = new WifiConfiguration
                 {
-                    toastService.ToastLongMessage(Language.Language.WifiUnreacheable);
+                    Ssid = $"\"{wifiSummary.SSID}\"",
+                    PreSharedKey = $"\"{wifiSummary.Password.Replace("\"", "")}\""
+                };
+                var addNetwork = wifiManager.AddNetwork(wifiConfig);
+                var network = wifiManager.ConfiguredNetworks
+                     .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
+                var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
+                int counter = 0;
+                while (info != wifiSummary.SSID && counter < 5)
+                {
+                    info = GetCurrentWifiName();
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    counter++;
+                }
+                info = GetCurrentWifiName();
+                if (info == wifiSummary.SSID)
+                {
+                    toastService.ToastLongMessage(Language.Language.Sucess);
                 }
                 else
                 {
-                    toastService.ToastLongMessage(Language.Language.Alredy);
+                    toastService.ToastLongMessage(Language.Language.Fail);
                 }
+            }
+            else if (!canConnect)
+            {
+                toastService.ToastLongMessage(Language.Language.WifiUnreacheable);
             }
             else
             {
-                toastService.ToastLongMessage(Language.Language.Invalid);
+                toastService.ToastLongMessage(Language.Language.Alredy);
             }
-            return;
+
         }
 
-        private bool CanConnect(WifiManager wifiManager, string Target) 
+        private bool CanConnect(WifiManager wifiManager, string Target)
         {
-            return wifiManager.ScanResults.Any(scanResult => scanResult.Ssid == Target) ;
-        }            
+            return wifiManager.ScanResults.Any(scanResult => scanResult.Ssid == Target);
+        }
 
 
         public string GetCurrentWifiName()

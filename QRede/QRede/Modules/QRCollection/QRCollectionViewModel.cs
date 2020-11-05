@@ -117,11 +117,11 @@ namespace QRede.Modules
         public ICommand GetImageFromGalleryCommand { get; private set; }
         private async Task GetImageFromGallery()
         {
-            FileResult fileResult = await Xamarin.Essentials.FilePicker.PickAsync(PickOptions.Images);
+            FileResult fileResult = await FilePicker.PickAsync(PickOptions.Images);
 
             if (fileResult != null)
             {
-                WifiSummary wifiSummary = await DependencyService.Get<IBarcodeService>().GetImageAsWifiSummary(fileResult.FullPath);
+                WifiSummary wifiSummary = await DependencyService.Get<IBarcodeService>().GetImageAsWifiSummary(fileResult);
 
                 if (wifiSummary == null)
                 {

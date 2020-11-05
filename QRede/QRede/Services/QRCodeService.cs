@@ -28,5 +28,41 @@ namespace QRede.Services
                 wifiSummary.FormatedWifiString = string.Format(FormatedWifiString, wifiSummary.SSID, "WPA", wifiSummary.Password);
             });
         }
+
+        public static WifiSummary ParseQRCodeString(string text)
+        {
+            WifiSummary wifiSummary = null;
+
+            if (!string.IsNullOrWhiteSpace(text) &&
+               text.ToUpperInvariant().StartsWith("WIFI:", StringComparison.Ordinal))
+            {
+                string[] parser = text.Replace("{", "").Replace("}", "").Split(';', ':');
+                //FORMATO DO PARSER
+                //[0]WIFI
+                //[1]S
+                //[2]SSID
+                //[3]T
+                //[4]WPA
+                //[5]P
+                //[6]SENHA
+                //[7]""
+                //[8]""
+                if (parser?.Length == 9 && parser[1] == "S" && parser[3] == "T" && parser[5] == "P")
+                {
+                    string SSID = parser[2];
+                    string password = parser[6];
+
+                    wifiSummary = new WifiSummary
+                    {
+                        SSID = SSID,
+                        Password = password,
+                        FormatedWifiString = text,
+                    };
+                }
+
+            }
+
+            return wifiSummary;
+        }
     }
 }

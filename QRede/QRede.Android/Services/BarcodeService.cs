@@ -15,6 +15,8 @@ using Android.Widget;
 using Java.Nio;
 using QRede.Interfaces;
 using QRede.Model;
+using QRede.Services;
+using Xamarin.Essentials;
 using ZXing;
 using ZXing.Common;
 
@@ -47,62 +49,56 @@ namespace QRede.Droid.Services
             });
         }
 
-        public Task<WifiSummary> GetImageAsWifiSummary(string fullFilePath)
+        public Task<WifiSummary> GetImageAsWifiSummary(FileResult fileResult)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 WifiSummary wifiSummary = null;
 
-                try
+                using (Stream fileStream = await fileResult.OpenReadAsync())
+                using (var memStream = new MemoryStream())
                 {
-                    string newPath = $"{fullFilePath.Replace(".png", string.Empty)}.bmp";
-                    //var image = Image.FromStream(fileStream);
-
-                    //image.Save(newPath, System.Drawing.Imaging.ImageFormat.Bmp);
-
-                    //var imageBytes = File.ReadAllBytes(fullFilePath);
-
-                    //TODO: a leitura do filemode Open falha para qualquer arquivo fora do escopo do aplicativo, investigar
-                    //https://developercommunity.visualstudio.com/content/problem/899718/systemunauthorizedaccessexception-access-to-the-pa-1.html
-                    System.Drawing.Bitmap bitmap;
-                    using (var bmpStream = new FileStream(fullFilePath, FileMode.Open))
+                    try
                     {
-                        var image = Image.FromStream(bmpStream);
-                        bitmap = new System.Drawing.Bitmap(image);
-                    }
+                        await fileStream.CopyToAsync(memStream);
 
-                    byte[] bytes;
+                        byte[] bytes = memStream.ToArray();
 
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                        bytes = ms.ToArray();
-                    }
-           
-                    ZXing.BarcodeReader reader = new ZXing.BarcodeReader()
-                    {
-                        Options = new DecodingOptions
+                        string cacheDirectory = FileSystem.CacheDirectory;
+                        string fileName = fileResult.FileName;
+                        string fullPath = System.IO.Path.Combine(cacheDirectory, fileName);
+
+                        await File.WriteAllBytesAsync(fullPath, bytes);
+
+                        var reader = new ZXing.Android.BarcodeReader()
                         {
-                            TryHarder = true,
-                            PureBarcode = true,
-                            PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.QR_CODE }
+                            Options = new DecodingOptions()
+                            {
+                                PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.QR_CODE },
+                            },
+                        };
+
+                        var bitmap = await BitmapFactory.DecodeFileAsync(fullPath);
+
+                        ZXing.Result result = reader.Decode(bitmap);
+
+                        if (result != null)
+                        {
+                            wifiSummary = QRCodeService.ParseQRCodeString(result.Text);
+
+                            if (wifiSummary == null)
+                                return wifiSummary;
+
+                            wifiSummary.QRCodeAsBytes = bytes;
                         }
-                    };
-
-                    ZXing.Result result = reader.Decode(bytes, 500, 500, RGBLuminanceSource.BitmapFormat.RGB32);
-                    //You have to declare a delegate which converts your byte array to a luminance source object.
-
-                    if (result != null)
-                    {
-                        string text = result.Text;
                     }
+                    catch (Exception)
+                    {
+                        //TODO: criar sistema de log de erros, ainda a definir
+                        throw;
+                    }
+
                 }
-                catch (Exception ex)
-                {
-
-
-                }
-
 
                 return wifiSummary;
             });

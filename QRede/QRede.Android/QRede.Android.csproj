@@ -77,6 +77,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
+    <PackageReference Include="ZXing.Net.Bindings.Android">
+      <Version>0.16.6</Version>
+    </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.0.0-beta5</Version>
     </PackageReference>
