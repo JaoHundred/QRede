@@ -16,6 +16,10 @@
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
             </Style>
+            <Style TargetType="Label" Class="LicenseAutorStyle">
+                <Setter Property="Margin" Value="25,0,0,25"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
             <Style TargetType="Entry">
                 <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
             </Style>

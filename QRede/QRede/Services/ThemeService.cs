@@ -42,5 +42,10 @@ namespace QRede.Services
                 await App.Current.SavePropertiesAsync();
             });
         }
+        public static ResourceDictionary GetCurrentTheme()
+        {
+            var dics = Application.Current.Resources.MergedDictionaries;
+            return dics.First(p => p is LightTheme || p is DarkTheme);
+        }
     }
 }

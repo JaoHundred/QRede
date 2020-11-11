@@ -17,15 +17,21 @@ namespace QRede.Services
             Type ViewType = Type.GetType(name.Replace("ViewModel", "View"));
 
             IEnumerable<Type> paramTypes = parameters.Select(parameter => parameter.GetType());
-            ConstructorInfo ViewModelConstructor =  typeof(T).GetConstructor(paramTypes.ToArray());
+            ConstructorInfo ViewModelConstructor = typeof(T).GetConstructor(paramTypes.ToArray());
             object ViewModel = ViewModelConstructor.Invoke(parameters);
 
             ConstructorInfo ViewConstructor = ViewType.GetConstructor(Type.EmptyTypes);
             Page View = (Page)ViewConstructor.Invoke(null);
 
             View.BindingContext = ViewModel;
-
-            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync((PopupPage)View);
+            if (View is PopupPage)
+            {
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync((PopupPage)View);
+            }
+            else
+            {
+                await Shell.Current.Navigation.PushAsync(View);
+            }
         }
 
         public static Task PopModalAsync()

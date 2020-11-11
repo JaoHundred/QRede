@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
+using MvvmHelpers.Commands;
+using QRede.Modules.Settings;
 using QRede.Services;
 
 namespace QRede.Modules
@@ -12,6 +16,7 @@ namespace QRede.Modules
         {
             string themeKey = App.themeKey;
             int themeId = Convert.ToInt32(App.Current.Properties[themeKey]);
+            OpenAboutCommand = new AsyncCommand(OpenAbout);
 
             if (themeId == 1)
             {
@@ -44,7 +49,7 @@ namespace QRede.Modules
                     ThemeText = Language.Language.LightTheme;
                     ThemeService.ChangeThemeAsync(1);
                 }
-                
+
                 //tema claro
                 else
                 {
@@ -54,6 +59,19 @@ namespace QRede.Modules
 
                 SetProperty(ref isDarkTheme, value);
             }
+        }
+
+        public ICommand OpenAboutCommand { get; private set; }
+
+        private async Task OpenAbout()
+        {
+            if (IsNotBusy)
+            {
+                IsBusy = true;
+                await NavigationService.NavigateAsync<AboutViewModel>();
+                IsBusy = false;
+            }
+
         }
     }
 }
