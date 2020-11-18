@@ -17,6 +17,9 @@ namespace QRede
             InitializeComponent();
 
             MainPage = new AppShell();
+
+
+            Xamarin.Essentials.VersionTracking.Track();
         }
 
         public readonly static string themeKey = "AppTheme";

@@ -46,6 +46,9 @@
     <Compile Update="Modules\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Modules\Settings\LicenseView.xaml.cs">
+      <DependentUpon>LicenseView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -68,7 +71,7 @@
     <EmbeddedResource Update="Modules\QRScanner\QRScannerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Modules\Settings\AboutView.xaml">
+    <EmbeddedResource Update="Modules\Settings\LicenseView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Modules\Settings\SettingsView.xaml">

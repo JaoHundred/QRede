@@ -10,9 +10,9 @@ using Xamarin.Forms;
 
 namespace QRede.Modules.Settings
 {
-    class AboutViewModel
+    class LicenseViewModel
     {
-        public AboutViewModel()
+        public LicenseViewModel()
         {
             OpenWebViewCommand = new AsyncCommand<string>(OpenWebView);
         }

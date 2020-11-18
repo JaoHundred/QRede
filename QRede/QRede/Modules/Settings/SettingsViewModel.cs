@@ -16,8 +16,6 @@ namespace QRede.Modules
         {
             string themeKey = App.themeKey;
             int themeId = Convert.ToInt32(App.Current.Properties[themeKey]);
-            OpenAboutCommand = new AsyncCommand(OpenAbout);
-
             if (themeId == 1)
             {
                 IsDarkTheme = true;
@@ -28,6 +26,9 @@ namespace QRede.Modules
                 IsDarkTheme = false;
                 ThemeText = Language.Language.DarkTheme;
             }
+
+            Version = Xamarin.Essentials.VersionTracking.CurrentVersion;
+            OpenLicenseCommand = new AsyncCommand(OpenLicense);
         }
 
         private string themeText;
@@ -61,14 +62,16 @@ namespace QRede.Modules
             }
         }
 
-        public ICommand OpenAboutCommand { get; private set; }
+        public string Version { get; set; }
 
-        private async Task OpenAbout()
+        public ICommand OpenLicenseCommand { get; private set; }
+
+        private async Task OpenLicense()
         {
             if (IsNotBusy)
             {
                 IsBusy = true;
-                await NavigationService.NavigateAsync<AboutViewModel>();
+                await NavigationService.NavigateAsync<LicenseViewModel>();
                 IsBusy = false;
             }
 

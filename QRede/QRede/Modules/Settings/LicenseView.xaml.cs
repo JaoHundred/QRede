@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace QRede.Modules.Settings
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AboutView : ContentPage
+    public partial class LicenseView : ContentPage
     {
-        public AboutView()
+        public LicenseView()
         {
             InitializeComponent();
         }

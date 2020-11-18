@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:consts ="clr-namespace:QRede"
+             x:Class="QRede.Modules.Settings.LicenseView">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid RowDefinitions="auto" Margin="10" RowSpacing="0">
+            <Label Text="Licenças" Margin="0,0,0,25"/>
+            <StackLayout Orientation="Vertical" Grid.Row="1">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                          CommandParameter="{x:Static consts:LinkLicenseConstants.FluentValidation}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="FluentValidation"/>
+                <Label Text="Jeremy Skinner" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="2">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.LiteDB}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="LiteDB"/>
+                <Label Text="Maurício David" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="3">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.NetStandardLibrary}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="NETStandard.Library"/>
+                <Label Text="Microsoft" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="4">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.RefactoredMvvmHelpers}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="Refractored.MvvmHelpers"/>
+                <Label Text="James Montemagno" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="5">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.RgPluginsPopup}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="Rg.Plugins.Popup"/>
+                <Label Text="Kirill Lyubimov" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="6">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.SystemDrawingCommon}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="System.Drawing.Common"/>
+                <Label Text="Microsoft" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="7">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.XamPluginConnectivity}"/>
+                </StackLayout.GestureRecognizers>
+                
+                <Label Text="Xam.Plugin.Connectivity"/>
+                <Label Text="James Montemagno" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="8">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.XamarimEssentials}"/>
+                </StackLayout.GestureRecognizers>
+                
+                <Label Text="Xamarin.Essentials"/>
+                <Label Text="Microsoft" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="9">                
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.XamarimFFImageLoadingForms}"/>
+                </StackLayout.GestureRecognizers>
+                
+                <Label Text="Xamarin.FFImageLoading.Forms"/>
+                <Label Text="Daniel Luberda, Fabien Molinet" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="10">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.XamarimForms}"/>
+                </StackLayout.GestureRecognizers>
+                
+                <Label Text="Xamarin.Forms"/>
+                <Label Text="Microsoft" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="11">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.ZxingNetBindingsAndroid}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="ZXing.Net.Bindings.Android"/>
+                <Label Text="Michael Jahn" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="12">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.ZxingNetMobile}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="ZXing.Net.Mobile"/>
+                <Label Text="Redth" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="13">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebViewCommand}" 
+                                              CommandParameter="{x:Static consts:LinkLicenseConstants.ZxingNetMobileForms}"/>
+                </StackLayout.GestureRecognizers>
+
+                <Label Text="ZXing.Net.Mobile.Forms"/>
+                <Label Text="Redth" StyleClass="LicenseAutorStyle" />
+            </StackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

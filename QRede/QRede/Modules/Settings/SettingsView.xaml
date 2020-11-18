@@ -12,13 +12,22 @@
 
     <Grid Margin="10" RowDefinitions="auto,auto, auto" RowSpacing="15" >
         <Label Text="{x:Static resources:Language.Theme}" d:Text="Tema"/>
-        <Label Text="{Binding ThemeText}" Grid.Row="1" d:Text="Switch" Margin="25,0,0,0"/>
-        <controls:CustomSwitch IsToggled="{Binding IsDarkTheme}" Grid.Row="1" HorizontalOptions="End"/>
 
-        <Label Text="{x:Static resources:Language.About}" d:Text="placeholder" Grid.Row="2" >
+        <Grid Grid.Row="1">
+            <Label Text="{Binding ThemeText}" d:Text="Switch" Margin="25,0,0,0"/>
+            <controls:CustomSwitch IsToggled="{Binding IsDarkTheme}" HorizontalOptions="End" />
+        </Grid>
+
+        <StackLayout Orientation="Vertical" Grid.Row="2" >
+            <Label Text="{x:Static resources:Language.Version}" d:Text="Versão:"/>
+            <Label Text ="{Binding Version}" d:Text="Numero" Margin="25,0,0,0"/>
+        </StackLayout>
+
+        <Label Text="{x:Static resources:Language.License}" d:Text="Licença" Grid.Row="3" >
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding OpenAboutCommand}"/>
+                <TapGestureRecognizer Command="{Binding OpenLicenseCommand}"/>
             </Label.GestureRecognizers>
         </Label>
+
     </Grid>
 </ContentPage>
