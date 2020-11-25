@@ -29,6 +29,7 @@ namespace QRede.Modules
 
             Version = Xamarin.Essentials.VersionTracking.CurrentVersion;
             OpenLicenseCommand = new AsyncCommand(OpenLicense);
+            OpenFAQCommand = new AsyncCommand(OpenFAQ);
         }
 
         private string themeText;
@@ -72,6 +73,18 @@ namespace QRede.Modules
             {
                 IsBusy = true;
                 await NavigationService.NavigateAsync<LicenseViewModel>();
+                IsBusy = false;
+            }
+
+        }
+        public ICommand OpenFAQCommand { get; private set; }
+
+        private async Task OpenFAQ()
+        {
+            if (IsNotBusy)
+            {
+                IsBusy = true;
+                await NavigationService.NavigateAsync<FAQViewModel>();
                 IsBusy = false;
             }
 

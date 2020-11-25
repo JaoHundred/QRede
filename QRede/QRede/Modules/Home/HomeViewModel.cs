@@ -24,8 +24,6 @@ namespace QRede.Modules
 {
     public class HomeViewModel : BaseViewModel, IAsyncInitialization
     {
-        //TODO:https://github.com/JaoHundred/QRede/issues/18
-
         public HomeViewModel()
         {
             LoadTask = LoadAsync();

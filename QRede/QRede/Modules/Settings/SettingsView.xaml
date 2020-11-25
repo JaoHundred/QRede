@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              x:Class="QRede.Modules.SettingsView">
 
-    <Grid Margin="10" RowDefinitions="auto,auto, auto" RowSpacing="15" >
+    <Grid Margin="10" RowDefinitions="auto,auto,auto,auto" RowSpacing="15" >
         <Label Text="{x:Static resources:Language.Theme}" d:Text="Tema"/>
 
         <Grid Grid.Row="1">
@@ -26,6 +26,12 @@
         <Label Text="{x:Static resources:Language.License}" d:Text="Licença" Grid.Row="3" >
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding OpenLicenseCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Label Text="{x:Static resources:Language.FAQ}" d:Text="FAQ" Grid.Row="4" >
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenFAQCommand}"/>
             </Label.GestureRecognizers>
         </Label>
 

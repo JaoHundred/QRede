@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
+using MvvmHelpers;
 
 namespace QRede.Services
 {

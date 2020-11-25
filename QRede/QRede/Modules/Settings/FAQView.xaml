@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:QRede.Language"
+             x:Class="QRede.Modules.Settings.FAQView"
+             mc:Ignorable="d">
+
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto, auto" Margin="10">
+            <Label Text="{x:Static resources:Language.Questions}" d:Text="Perguntas:" />
+            <StackLayout Grid.Row="1">
+                <Label Text="{x:Static resources:Language.Q1}" d:Text="Pergunta 1" />
+                <Label Text="{x:Static resources:Language.A1}" d:Text="Respota 1 lorem ispum eunão tenho otorrinolaringologista"
+                       class="AnswerStyle" LineBreakMode="WordWrap"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

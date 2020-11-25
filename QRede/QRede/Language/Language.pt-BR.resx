@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A1" xml:space="preserve">
+    <value>Somente caracteres alfanumérico. Você não pode usar caracteres como ",", ".", ":", ";", "/", "?" </value>
+    <comment>Resposta a pergunta 1 das Perguntas Frequentes</comment>
+  </data>
   <data name="Alredy" xml:space="preserve">
     <value>Já conectado</value>
   </data>
@@ -131,6 +135,9 @@
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Não foi possível conectar, tente de novo</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Perguntas Frequentes</value>
   </data>
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Gerar Código QR</value>
@@ -156,8 +163,15 @@
   <data name="PasswordIsInvalid" xml:space="preserve">
     <value>Só é permitido senhas alfanuméricas, caráctere errado:</value>
   </data>
+  <data name="Q1" xml:space="preserve">
+    <value>Quais caracteres eu posso usar?</value>
+    <comment>Pergunta 1 das Perguntas frequentes</comment>
+  </data>
   <data name="QRCodeSearch" xml:space="preserve">
     <value>Pesquisar</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Perguntas:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Salvar</value>

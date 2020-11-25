@@ -61,6 +61,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Only alfanumeric character. You can&apos;t use any character&apos;s like these &quot;,&quot;, &quot;.&quot;, &quot;:&quot;, &quot;;&quot;, &quot;/&quot;, &quot;?&quot; .
+        /// </summary>
+        public static string A1 {
+            get {
+                return ResourceManager.GetString("A1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Already Connected.
         /// </summary>
         public static string Alredy {
@@ -102,6 +111,15 @@ namespace QRede.Language {
         public static string Fail {
             get {
                 return ResourceManager.GetString("Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Frequently Asked Questions.
+        /// </summary>
+        public static string FAQ {
+            get {
+                return ResourceManager.GetString("FAQ", resourceCulture);
             }
         }
         
@@ -178,11 +196,29 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a What characters can I use? .
+        /// </summary>
+        public static string Q1 {
+            get {
+                return ResourceManager.GetString("Q1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Search.
         /// </summary>
         public static string QRCodeSearch {
             get {
                 return ResourceManager.GetString("QRCodeSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Questions.
+        /// </summary>
+        public static string Questions {
+            get {
+                return ResourceManager.GetString("Questions", resourceCulture);
             }
         }
         
