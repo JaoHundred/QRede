@@ -154,6 +154,9 @@
   <data name="License" xml:space="preserve">
     <value>License</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Light mode</value>
   </data>

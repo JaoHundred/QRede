@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QRede.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,19 @@ namespace QRede.Modules.Settings
         public LicenseView()
         {
             InitializeComponent();
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (sender is Grid grid)
+            {
+                var color = ThemeService.GetCurrentTheme()["ItemSelectedColor"];
+                grid.BackgroundColor = (Color)color;
+
+                await Task.Delay(TimeSpan.FromSeconds(1));
+
+                grid.BackgroundColor = Color.Transparent;
+            }
         }
     }
 }
