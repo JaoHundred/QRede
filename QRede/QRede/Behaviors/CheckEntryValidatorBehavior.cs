@@ -24,7 +24,7 @@ namespace QRede.Behaviors
         {
             if (sender is Entry entry)
             {
-                ValidationResult validation = await _validator.ValidateAsync(e.NewTextValue);
+                ValidationResult validation = await _validator.ValidateAsync( new ValidationContext<string>(e.NewTextValue));
 
                 if (!validation.IsValid)
                 {

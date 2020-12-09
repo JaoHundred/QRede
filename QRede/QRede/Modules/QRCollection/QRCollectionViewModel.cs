@@ -130,6 +130,7 @@ namespace QRede.Modules
                 }
 
                 WifiSummaryCollection.Add(wifiSummary);
+                OriginalWifiSummaryCollection.Add(wifiSummary);
                 App.liteDatabase.GetCollection<WifiSummary>().Upsert(wifiSummary);
             }
         }

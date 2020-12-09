@@ -82,6 +82,7 @@ namespace QRede.Droid.Services
 
         private bool CanConnect(WifiManager wifiManager, string Target)
         {
+            var aux = wifiManager.ScanResults;
             return wifiManager.ScanResults.Any(scanResult => scanResult.Ssid == Target);
         }
 
