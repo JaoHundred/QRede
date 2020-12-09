@@ -24,7 +24,7 @@ namespace QRede
 
         public readonly static string themeKey = "AppTheme";
 
-        public static LiteDatabase liteDatabase; 
+        public static LiteDatabase liteDatabase;
 
         protected override async void OnStart()
         {
@@ -35,17 +35,24 @@ namespace QRede
                 await ThemeService.ChangeThemeAsync(themeId);
             }
             else
-            //1 é tema claro, garante que a aplicação em estado limpo(instalado pela primeira vez)
-            //não vai trocar de tema sozinho quando abrir pela segunda vez
+                //1 é tema claro, garante que a aplicação em estado limpo(instalado pela primeira vez)
+                //não vai trocar de tema sozinho quando abrir pela segunda vez
                 App.Current.Properties.Add(themeKey, 1);
 
+            if (liteDatabase == null)
+                StartDatabase();
+
+            await App.Current.SavePropertiesAsync();
+        }
+
+        private static void StartDatabase()
+        {
             BsonMapper bsonMapper = BsonMapper.Global;
             bsonMapper.Entity<WifiSummary>().Id(x => x.Id)
-                .Ignore(x=>x.WifiState)
-                .Ignore(x=>x.ImagePath)
-                .Ignore(x=>x.BarcodeFormat);
+                .Ignore(x => x.WifiState)
+                .Ignore(x => x.ImagePath)
+                .Ignore(x => x.BarcodeFormat);
             liteDatabase = new LiteDatabase($"Filename={Constants.QrCodeFilePath}", bsonMapper);
-            await App.Current.SavePropertiesAsync();
         }
 
         protected override void OnSleep()
