@@ -19,7 +19,6 @@ using QRede.Language;
 using QRede.Model;
 using QRede.Services;
 using Xamarin.Forms;
-
 [assembly: Xamarin.Forms.Dependency(typeof(QRede.Droid.Services.ConnectivityService))]
 namespace QRede.Droid.Services
 {
@@ -27,6 +26,7 @@ namespace QRede.Droid.Services
     {
         public async Task Connect(string result)
         {
+            
             IToastService toastService = DependencyService.Get<IToastService>();
 
             WifiSummary wifiSummary = QRCodeService.ParseQRCodeString(result);
@@ -82,7 +82,6 @@ namespace QRede.Droid.Services
 
         private bool CanConnect(WifiManager wifiManager, string Target)
         {
-            var aux = wifiManager.ScanResults;
             return wifiManager.ScanResults.Any(scanResult => scanResult.Ssid == Target);
         }
 

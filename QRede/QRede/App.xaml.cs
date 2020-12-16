@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 using LiteDB;
 
 namespace QRede
@@ -43,6 +44,12 @@ namespace QRede
                 StartDatabase();
 
             await App.Current.SavePropertiesAsync();
+
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            if (status is PermissionStatus.Denied)
+            {
+                await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
         }
 
         private static void StartDatabase()
