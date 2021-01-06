@@ -19,7 +19,7 @@
         <c:ByteVectorToImageConverter x:Key="ByteToImage"/>
     </ContentPage.Resources>
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,auto">
+        <Grid ColumnDefinitions="*,auto, auto" ColumnSpacing="10">
             <Entry x:Name="EntrySearch" Placeholder="{x:Static resources:Language.QRCodeSearch}" Text="{Binding QRSearch}" 
                    IsVisible="False" PlaceholderColor="#d9d9d9" TextColor="#d9d9d9" Unfocused="OnLostFocus">
                 
@@ -45,8 +45,23 @@
                 </i:CachedImage.Triggers>
                 
             </i:CachedImage>
+            
+            <i:CachedImage Grid.Column="2" HorizontalOptions="End" Source="CircledPlus.png" HeightRequest="20" Margin="5">
+                
+                <i:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GetImageFromGalleryCommand}"/>
+                </i:CachedImage.GestureRecognizers>
 
-            <Button Grid.Column="2" Text="IMGG" Command="{Binding GetImageFromGalleryCommand}"/>
+                <i:CachedImage.Triggers>
+                    <DataTrigger TargetType="i:CachedImage" Binding="{Binding IsDarkTheme}" Value="True" >
+                        <Setter Property="Source" Value="CircledPlusClaro.png"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="i:CachedImage" Binding="{Binding IsDarkTheme}" Value="False" >
+                        <Setter Property="Source" Value="CircledPlusEscuro.png"/>
+                    </DataTrigger>
+                </i:CachedImage.Triggers>
+                
+            </i:CachedImage>
 
         </Grid>
     </Shell.TitleView>
