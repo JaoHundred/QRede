@@ -60,27 +60,17 @@ namespace QRede.Droid.Services
                 {
                     try
                     {
-                        await fileStream.CopyToAsync(memStream);
-
-                        byte[] bytes = memStream.ToArray();
-
                         string cacheDirectory = FileSystem.CacheDirectory;
                         string fileName = fileResult.FileName;
                         string fullPath = System.IO.Path.Combine(cacheDirectory, fileName);
 
+                        await fileStream.CopyToAsync(memStream);
+
+                        byte[] bytes = memStream.ToArray();
                         await File.WriteAllBytesAsync(fullPath, bytes);
 
-                        var reader = new ZXing.Android.BarcodeReader()
-                        {
-                            Options = new DecodingOptions()
-                            {
-                                PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.QR_CODE },
-                            },
-                        };
 
-                        var bitmap = await BitmapFactory.DecodeFileAsync(fullPath);
-
-                        ZXing.Result result = reader.Decode(bitmap);
+                        ZXing.Result result = await ReadBarcodeAsync(fullPath);
 
                         if (result != null)
                         {
@@ -92,7 +82,7 @@ namespace QRede.Droid.Services
                             wifiSummary.QRCodeAsBytes = bytes;
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         //TODO: criar sistema de log de erros, ainda a definir
                         throw;
@@ -101,6 +91,42 @@ namespace QRede.Droid.Services
                 }
 
                 return wifiSummary;
+            });
+        }
+
+        public async static Task<ZXing.Result> ReadBarcodeAsync(string filePath)
+        {
+            var reader = new ZXing.BarcodeReaderGeneric
+            {
+                Options = new DecodingOptions
+                {
+                    PureBarcode = true,
+                    PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.QR_CODE },
+                },
+            };
+
+            Android.Graphics.Bitmap bmap = await BitmapFactory.DecodeFileAsync(filePath);
+            byte[] bytes = await GetRgbBytesAsync(bmap);
+
+            var result = reader.Decode(new RGBLuminanceSource(bytes, bmap.Width, bmap.Height));
+            return result;
+        }
+
+        private static Task<byte[]> GetRgbBytesAsync(Android.Graphics.Bitmap bitmap)
+        {
+            return Task.Run(() =>
+            {
+                var rgbList = new List<byte>();
+                for (int y = 0; y < bitmap.Height; y++)
+                {
+                    for (int x = 0; x < bitmap.Width; x++)
+                    {
+                        Android.Graphics.Color pixelColor = new Android.Graphics.Color(bitmap.GetPixel(x, y));
+
+                        rgbList.AddRange(new[] { pixelColor.R, pixelColor.G, pixelColor.B });
+                    }
+                }
+                return rgbList.ToArray();
             });
         }
     }
