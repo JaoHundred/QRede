@@ -47,7 +47,7 @@ namespace QRede.Services
                 //[6]SENHA
                 //[7]""
                 //[8]""
-                if (parser?.Length == 9 && parser[1] == "S" && parser[3] == "T" && parser[5] == "P")
+                if (parser[1] == "S" && parser[3] == "T" && parser[5] == "P")
                 {
                     string SSID = parser[2];
                     string password = parser[6];
