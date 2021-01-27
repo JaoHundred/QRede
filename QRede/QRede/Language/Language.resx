@@ -127,11 +127,20 @@
   <data name="Conect" xml:space="preserve">
     <value>Connect</value>
   </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Yes</value>
+  </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Dark mode</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="DeleteComplete" xml:space="preserve">
+    <value>QR code has been deleted</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this QR code?</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Cannot Connect. Try Again</value>
@@ -176,6 +185,9 @@
   <data name="Questions" xml:space="preserve">
     <value>Questions</value>
   </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -214,6 +226,9 @@
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
   </data>
   <data name="WiFiStateOff" xml:space="preserve">
     <value>Disconected</value>

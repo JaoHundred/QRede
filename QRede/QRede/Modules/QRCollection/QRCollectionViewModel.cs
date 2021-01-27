@@ -22,7 +22,7 @@ namespace QRede.Modules
         {
             WifiSummaryCollection = new ObservableRangeCollection<WifiSummary>();
 
-            DeleteCommand = new magno.Command<WifiSummary>(OnDelete);
+            DeleteCommand = new magno.AsyncCommand<WifiSummary>(OnDelete);
             ConnectCommand = new magno.AsyncCommand<WifiSummary>(OnConnect);
             SearchCommand = new magno.AsyncCommand(OnSearch);
             SortByWordsCommand = new magno.AsyncCommand(OnSortByWords);
@@ -57,11 +57,17 @@ namespace QRede.Modules
         #region Commands
         public ICommand DeleteCommand { get; set; }
 
-        private void OnDelete(WifiSummary wifiSummary)
+        private async Task OnDelete(WifiSummary wifiSummary)
         {
-            WifiSummaryCollection.Remove(wifiSummary);
-            OriginalWifiSummaryCollection.Remove(wifiSummary);
-            App.liteDatabase.GetCollection<WifiSummary>().Delete(wifiSummary.Id);
+            if (NavigationService.CanPopupNavigate<GenericPopupViewModel>())
+            {
+                await NavigationService.NavigateAsync<GenericPopupViewModel>(Language.Language.Warning, Language.Language.DeleteConfirmation, new Action(() =>
+                {
+                    WifiSummaryCollection.Remove(wifiSummary);
+                    OriginalWifiSummaryCollection.Remove(wifiSummary);
+                    App.liteDatabase.GetCollection<WifiSummary>().Delete(wifiSummary.Id);
+                }));
+            }
         }
 
         public ICommand ConnectCommand { get; set; }

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:QRede.Modules"
+             xmlns:lang="clr-namespace:QRede.Language"
+             x:Class="QRede.Modules.GenericPopupView"
+                 Padding="50,200"
+                 HasSystemPadding="True">
+    <Frame BackgroundColor="{DynamicResource NavigationBarColor}">
+        <Grid BackgroundColor="{DynamicResource BackgroundColor}" RowDefinitions="auto, *, auto" VerticalOptions="Center">
+
+            <Label Text="{Binding PopupTitle}" HorizontalTextAlignment="Center" Margin="5" HorizontalOptions="Center"/>
+
+            <ScrollView Grid.Row="1">
+                <Label Text="{Binding PopupMessage}" HorizontalTextAlignment="Center" Margin="5" 
+                   HorizontalOptions="Center"/>
+            </ScrollView>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center">
+
+                <Button Text="{x:Static lang:Language.Confirmation}" Command="{Binding ConfirmationCommand}" Margin="5"/>
+
+                <Button Text="{x:Static lang:Language.Refuse}" Command="{Binding RefuseCommand}" Margin="5"/>
+
+            </StackLayout>
+
+        </Grid>
+    </Frame>
+</pages:PopupPage>
