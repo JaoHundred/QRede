@@ -43,6 +43,9 @@
     <Compile Update="Modules\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Modules\GenericPopup\GenericPopupView.xaml.cs">
+      <DependentUpon>GenericPopupView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Modules\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
