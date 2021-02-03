@@ -10,6 +10,7 @@ namespace QRede.Interfaces
     public interface IConnectivityService
     {
         string GetCurrentWifiName();
+        string GetCurrentSecurity();
 
         Task Connect(string result);
     }

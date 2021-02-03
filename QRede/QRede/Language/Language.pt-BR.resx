@@ -173,7 +173,7 @@
     <value>Senha:</value>
   </data>
   <data name="PasswordIsInvalid" xml:space="preserve">
-    <value>Só é permitido senhas alfanuméricas, caráctere errado:</value>
+    <value>Caractere inválido:</value>
   </data>
   <data name="Q1" xml:space="preserve">
     <value>Quais caracteres eu posso usar?</value>
