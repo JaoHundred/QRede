@@ -9,7 +9,7 @@ namespace QRede.Model.Validator
     {
         public PasswordValidator()
         {
-            RuleFor(p => p).Matches(@"^[a-zA-Z0-9]*$").WithMessage(Language.Language.PasswordIsInvalid);
+            RuleFor(p => p).Matches(@"^[^ \\]*$").WithMessage(Language.Language.PasswordIsInvalid);
         }
     }
 }

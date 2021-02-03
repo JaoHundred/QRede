@@ -26,13 +26,9 @@ namespace QRede.Model
 
         public string SSID { get; set; }
 
-        private string password;
+        public string EncryptedPassword { get; set; }
 
-        public string Password
-        {
-            get { return password; }
-            set { SetProperty(ref password, value); }
-        }
+        public string Key { get; set; }
 
         private string wifiState;
         public string WifiState

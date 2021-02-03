@@ -109,10 +109,11 @@ namespace QRede.Modules
             WifiSummary wifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE)
             {
                 SSID = SSID,
-                Password = Password,
             };
 
-            await QRCodeService.GenerateQRStringAsync(wifiSummary);
+
+            wifiSummary.EncryptPassword(Password);
+            wifiSummary.FormatedWifiString = await QRCodeService.GenerateQRStringAsync(wifiSummary);
 
             await NavigationService.NavigateAsync<QRCodeViewModel>(wifiSummary, this);
         }

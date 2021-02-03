@@ -27,7 +27,7 @@ namespace QRede.Modules
             SearchCommand = new magno.AsyncCommand(OnSearch);
             SortByWordsCommand = new magno.AsyncCommand(OnSortByWords);
             ZoomImageCommand = new magno.AsyncCommand<WifiSummary>(OnZoomImage);
-            GetImageFromGalleryCommand = new MvvmHelpers.Commands.AsyncCommand(GetImageFromGallery);
+            GetImageFromGalleryCommand = new MvvmHelpers.Commands.AsyncCommand(OnGetImageFromGallery);
 
             OrderText = Language.Language.SortByAscending;
         }
@@ -121,7 +121,7 @@ namespace QRede.Modules
         }
 
         public ICommand GetImageFromGalleryCommand { get; private set; }
-        private async Task GetImageFromGallery()
+        private async Task OnGetImageFromGallery()
         {
             FileResult fileResult = await FilePicker.PickAsync(PickOptions.Images);
 

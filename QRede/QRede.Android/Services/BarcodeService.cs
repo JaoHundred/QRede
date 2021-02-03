@@ -79,7 +79,10 @@ namespace QRede.Droid.Services
                             if (wifiSummary == null)
                                 return wifiSummary;
 
-                            wifiSummary.QRCodeAsBytes = bytes;
+                            //o result text é convertido para uma imagem visualmente diferente da que foi pega da galeria
+                            //para manter a imagem do QR code uniforme em QRCollectionView
+                            //(implementações diferentes de QR code podem gerar QR diferentes mas com o mesmo resultado)
+                            wifiSummary.QRCodeAsBytes = await ConvertBarcodeImageToBytes(result.Text);
                         }
                     }
                     catch (Exception ex)
@@ -100,7 +103,6 @@ namespace QRede.Droid.Services
             {
                 Options = new DecodingOptions
                 {
-                    PureBarcode = true,
                     PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.QR_CODE },
                 },
             };

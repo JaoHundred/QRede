@@ -26,7 +26,7 @@ namespace QRede.Droid.Services
     {
         public async Task Connect(string result)
         {
-            
+
             IToastService toastService = DependencyService.Get<IToastService>();
 
             WifiSummary wifiSummary = QRCodeService.ParseQRCodeString(result);
@@ -42,11 +42,11 @@ namespace QRede.Droid.Services
             bool canConnect = CanConnect(wifiManager, wifiSummary.SSID);
             if (info != wifiSummary.SSID && canConnect)
             {
-
+                //TODO:conferir a conexão com o decryptPasword
                 var wifiConfig = new WifiConfiguration
                 {
                     Ssid = $"\"{wifiSummary.SSID}\"",
-                    PreSharedKey = $"\"{wifiSummary.Password.Replace("\"", "")}\""
+                    PreSharedKey = $"\"{wifiSummary.DecryptPassword().Replace("\"", "")}\""
                 };
                 var addNetwork = wifiManager.AddNetwork(wifiConfig);
                 var network = wifiManager.ConfiguredNetworks
@@ -106,6 +106,35 @@ namespace QRede.Droid.Services
             }
 
             return FormatSSid(ssid);// "\"formatoPadrão\""
+        }
+
+        public string GetCurrentSecurity()
+        {
+            string security = "";
+            WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
+            WifiInfo info = wifiManager.ConnectionInfo;
+            int networkId = info.NetworkId;
+
+            IList<WifiConfiguration> netConfList = wifiManager.ConfiguredNetworks;
+
+            foreach (WifiConfiguration wificonf in netConfList)
+            {
+                if (wificonf.NetworkId == networkId)
+                {
+                    //TODO: testar essa parte com redes reais e ver se o código abaixo
+                    //está funcionando corretamente
+
+                    if (wificonf.AllowedKeyManagement.Get((int)KeyManagementType.WpaPsk))
+                        security = "WPA";
+                    else
+                        security = wificonf.WepKeys.FirstOrDefault() != null ? "WEP" : "";
+
+                    break;
+                }
+
+            }
+
+            return security;
         }
 
         private string FormatSSid(string ssid)
