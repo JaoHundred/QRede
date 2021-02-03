@@ -7,10 +7,10 @@
              xmlns:vm="clr-namespace:QRede.Modules"
              xmlns:lang="clr-namespace:QRede.Language"
              x:Class="QRede.Modules.GenericPopupView"
-                 Padding="50,200"
+                 Padding="20,200"
                  HasSystemPadding="True">
-    <Frame BackgroundColor="{DynamicResource NavigationBarColor}">
-        <Grid BackgroundColor="{DynamicResource BackgroundColor}" RowDefinitions="auto, *, auto" VerticalOptions="Center">
+    <Frame BackgroundColor="{DynamicResource NavigationBarColor}" Padding="0">
+        <Grid BackgroundColor="{DynamicResource BackgroundColor}" RowDefinitions="auto, *, auto" VerticalOptions="Center" Margin="7,0" Padding=" 0,30">
 
             <Label Text="{Binding PopupTitle}" HorizontalTextAlignment="Center" Margin="5" HorizontalOptions="Center"/>
 
