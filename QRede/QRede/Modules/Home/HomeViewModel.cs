@@ -106,14 +106,10 @@ namespace QRede.Modules
         public ICommand GenerateQRCodeCommand { get; private set; }
         private async Task OnGenerateQRCode()
         {
-            WifiSummary wifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE)
-            {
-                SSID = SSID,
-            };
+            WifiSummary wifiSummary = new WifiSummary(ZXing.BarcodeFormat.QR_CODE);
 
-
-            wifiSummary.EncryptPassword(Password);
-            wifiSummary.FormatedWifiString = await QRCodeService.GenerateQRStringAsync(wifiSummary);
+            wifiSummary.EncryptedWifiString = EncryptionService.EncryptPassword(await QRCodeService.GenerateQRStringAsync(SSID, Password), out string key);
+            wifiSummary.Key = key;
 
             await NavigationService.NavigateAsync<QRCodeViewModel>(wifiSummary, this);
         }

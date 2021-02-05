@@ -16,6 +16,7 @@
 
     <pages:PopupPage.Resources>
         <conv:InversorConverter x:Key="InversorConverter"/>
+        <conv:DecryptionConverter x:Key="DecryptionConverter"/>
     </pages:PopupPage.Resources>
 
     <Grid BackgroundColor="Black">
@@ -23,7 +24,7 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Entry x:Name="hack" Text="{Binding CurrentWifiSummary.FormatedWifiString}" IsVisible="False"/>
+        <Entry x:Name="hack" Text="{Binding CurrentWifiSummary, Converter={StaticResource DecryptionConverter}, Mode=OneTime}" IsVisible="False"/>
         <qrcodeMobileForms:ZXingBarcodeImageView Grid.Row="0" BarcodeFormat="QR_CODE"
                                                      x:DataType="Entry"
                                                      BindingContext="{x:Reference hack}"

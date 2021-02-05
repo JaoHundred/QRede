@@ -74,10 +74,12 @@ namespace QRede.Droid.Services
 
                         if (result != null)
                         {
-                            wifiSummary = QRCodeService.ParseQRCodeString(result.Text);
 
-                            if (wifiSummary == null)
-                                return wifiSummary;
+                            wifiSummary = new WifiSummary(BarcodeFormat.QR_CODE)
+                            {
+                                EncryptedWifiString = EncryptionService.EncryptPassword(result.Text, out string key),
+                                Key = key,
+                            };
 
                             //o result text é convertido para uma imagem visualmente diferente da que foi pega da galeria
                             //para manter a imagem do QR code uniforme em QRCollectionView

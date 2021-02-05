@@ -26,41 +26,40 @@ namespace QRede.Droid.Services
     {
         public async Task Connect(string result)
         {
-
             IToastService toastService = DependencyService.Get<IToastService>();
 
-            WifiSummary wifiSummary = QRCodeService.ParseQRCodeString(result);
-
-            if (wifiSummary == null)
+            if (!result.StartsWith("WIFI"))
             {
                 toastService.ToastLongMessage(Language.Language.Invalid);
                 return;
             }
 
+            string ssid = WifiSummary.ParseWifiString(WifiParam.S, result);
+            string password = WifiSummary.ParseWifiString(WifiParam.P, result);
+
             WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
             string info = GetCurrentWifiName();
-            bool canConnect = CanConnect(wifiManager, wifiSummary.SSID);
-            if (info != wifiSummary.SSID && canConnect)
+            bool canConnect = CanConnect(wifiManager, ssid);
+            if (info != ssid && canConnect)
             {
-                //TODO:conferir a conexão com o decryptPasword
                 var wifiConfig = new WifiConfiguration
                 {
-                    Ssid = $"\"{wifiSummary.SSID}\"",
-                    PreSharedKey = $"\"{wifiSummary.DecryptPassword().Replace("\"", "")}\""
+                    Ssid = $"\"{ssid}\"",
+                    PreSharedKey = $"\"{password.Replace("\"", "")}\""
                 };
                 var addNetwork = wifiManager.AddNetwork(wifiConfig);
                 var network = wifiManager.ConfiguredNetworks
                      .FirstOrDefault(n => n.Ssid == wifiConfig.Ssid);
                 var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
                 int counter = 0;
-                while (info != wifiSummary.SSID && counter < 5)
+                while (info != ssid && counter < 5)
                 {
                     info = GetCurrentWifiName();
                     await Task.Delay(TimeSpan.FromSeconds(2));
                     counter++;
                 }
                 info = GetCurrentWifiName();
-                if (info == wifiSummary.SSID)
+                if (info == ssid)
                 {
                     toastService.ToastLongMessage(Language.Language.Sucess);
                 }

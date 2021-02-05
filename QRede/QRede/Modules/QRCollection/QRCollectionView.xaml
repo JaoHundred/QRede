@@ -17,6 +17,7 @@
              x:Name="page">
     <ContentPage.Resources>
         <c:ByteVectorToImageConverter x:Key="ByteToImage"/>
+        <c:ParseWifiStringWithParameterConverter x:Key="ParserConverter"/>
     </ContentPage.Resources>
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,auto, auto" ColumnSpacing="10">
@@ -103,7 +104,7 @@
                                                    Grid.Row="1" Grid.Column="1"
                                                    VerticalOptions="End"
                                                    Margin="0,5,0,0"/>                            
-                            <Label Grid.Row="2" Text="{Binding SSID}" 
+                            <Label Grid.Row="2" Text="{Binding ., Converter={x:StaticResource ParserConverter}, ConverterParameter={x:Static m:WifiParam.S}}" 
                                    Grid.ColumnSpan="2"
                                    HorizontalTextAlignment="Center"
                                    FontAttributes="Bold"/>

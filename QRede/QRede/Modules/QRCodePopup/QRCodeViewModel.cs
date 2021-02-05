@@ -17,9 +17,9 @@ namespace QRede.Modules
 {
     class QRCodeViewModel : BaseViewModel
     {
-        public QRCodeViewModel(WifiSummary formatedWifiString, BaseViewModel contextViewModel)
+        public QRCodeViewModel(WifiSummary wifiSummary, BaseViewModel contextViewModel)
         {
-            CurrentWifiSummary = formatedWifiString;
+            CurrentWifiSummary = wifiSummary;
 
             if (contextViewModel is HomeViewModel)
             {
@@ -52,7 +52,8 @@ namespace QRede.Modules
 
         public async Task OnSave()
         {
-            Task<byte[]> qrCodeTask = DependencyService.Get<IBarcodeService>().ConvertBarcodeImageToBytes(CurrentWifiSummary.FormatedWifiString);
+            Task<byte[]> qrCodeTask = DependencyService.Get<IBarcodeService>()
+                .ConvertBarcodeImageToBytes(EncryptionService.DecryptPassword(CurrentWifiSummary.EncryptedWifiString, CurrentWifiSummary.Key));
 
             CurrentWifiSummary.QRCodeAsBytes = await qrCodeTask;
 
@@ -70,10 +71,12 @@ namespace QRede.Modules
             {
                 IsBusy = true;
 
-                string fullPath = Path.Combine(FileSystem.CacheDirectory, $"{CurrentWifiSummary.SSID}.png");
+                string ssid = CurrentWifiSummary.ParseWifiString(WifiParam.S);
+
+                string fullPath = Path.Combine(FileSystem.CacheDirectory, $"{ssid}.png");
                 File.WriteAllBytes(fullPath, CurrentWifiSummary.QRCodeAsBytes);
 
-                await Share.RequestAsync(new ShareFileRequest($"{Language.Language.Sharing} {CurrentWifiSummary.SSID}", new ShareFile(fullPath)));
+                await Share.RequestAsync(new ShareFileRequest($"{Language.Language.Sharing} {ssid}", new ShareFile(fullPath)));
 
                 IsBusy = false;
             }

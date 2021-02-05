@@ -73,7 +73,7 @@ namespace QRede.Modules
         public ICommand ConnectCommand { get; set; }
         private async Task OnConnect(WifiSummary wifiSummary)
         {
-            await DependencyService.Get<IConnectivityService>().Connect(wifiSummary.FormatedWifiString);
+            await DependencyService.Get<IConnectivityService>().Connect(EncryptionService.DecryptPassword(wifiSummary.EncryptedWifiString, wifiSummary.Key));
         }
 
         public ICommand SearchCommand { get; set; }
@@ -82,7 +82,7 @@ namespace QRede.Modules
         {
             var task = Task.Run(() =>
             {
-                return OriginalWifiSummaryCollection.Where(wifiSummary => wifiSummary.SSID.ToLower().Contains(QRSearch.ToLower()));
+                return OriginalWifiSummaryCollection.Where(wifiSummary => wifiSummary.ParseWifiString(WifiParam.S).ToLower().Contains(QRSearch.ToLower()));
             });
 
             WifiSummaryCollection.ReplaceRange(await task);
@@ -97,12 +97,12 @@ namespace QRede.Modules
                 if (OrderText == Language.Language.SortByAscending)
                 {
                     OrderText = Language.Language.SortByDescending;
-                    return OriginalWifiSummaryCollection.OrderBy(wifiSummary => wifiSummary.SSID);
+                    return OriginalWifiSummaryCollection.OrderBy(wifiSummary => wifiSummary.ParseWifiString(WifiParam.S));
                 }
                 else
                 {
                     OrderText = Language.Language.SortByAscending;
-                    return OriginalWifiSummaryCollection.OrderByDescending(wifiSummary => wifiSummary.SSID);
+                    return OriginalWifiSummaryCollection.OrderByDescending(wifiSummary => wifiSummary.ParseWifiString(WifiParam.S));
                 }
             });
 
