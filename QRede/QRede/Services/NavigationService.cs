@@ -46,11 +46,11 @@ namespace QRede.Services
             Type ViewType = Type.GetType(name.Replace("ViewModel", "View"));
 
             PopupPage LastPopup = Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.LastOrDefault();
-            if(LastPopup==null)
+            if (LastPopup == null)
             {
                 return true;
             }
-            else if(LastPopup!=null && ViewType!=LastPopup.GetType())
+            else if (LastPopup != null && ViewType != LastPopup.GetType())
             {
                 return true;
             }

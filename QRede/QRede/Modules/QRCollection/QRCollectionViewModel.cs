@@ -61,12 +61,16 @@ namespace QRede.Modules
         {
             if (NavigationService.CanPopupNavigate<GenericPopupViewModel>())
             {
-                await NavigationService.NavigateAsync<GenericPopupViewModel>(Language.Language.Warning, Language.Language.DeleteConfirmation, new Action(() =>
+                await NavigationService.NavigateAsync<GenericPopupViewModel>(Language.Language.Warning, 
+                    Language.Language.DeleteConfirmation, Language.Language.Confirmation, 
+                    Language.Language.Refuse, 
+                new Action(() =>
                 {
                     WifiSummaryCollection.Remove(wifiSummary);
                     OriginalWifiSummaryCollection.Remove(wifiSummary);
                     App.liteDatabase.GetCollection<WifiSummary>().Delete(wifiSummary.Id);
-                }));
+                    DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.DeleteComplete);
+                }), new Action(()=> { }) ); //Action não aceita nulo por ser um delegate, então é necessario passar a ação vazia quando não quisermos executar uma ação
             }
         }
 

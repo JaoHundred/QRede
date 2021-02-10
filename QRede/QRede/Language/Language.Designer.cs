@@ -79,6 +79,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Connect.
         /// </summary>
         public static string Conect {
@@ -93,6 +102,15 @@ namespace QRede.Language {
         public static string Confirmation {
             get {
                 return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Do you wish to connect to {0}?.
+        /// </summary>
+        public static string Connecting {
+            get {
+                return ResourceManager.GetString("Connecting", resourceCulture);
             }
         }
         
@@ -223,7 +241,7 @@ namespace QRede.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Only alphanumeric password, error character:.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid character:.
         /// </summary>
         public static string PasswordIsInvalid {
             get {

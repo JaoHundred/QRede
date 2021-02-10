@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Contracts;
 
 namespace QRede.Modules
 {
@@ -14,7 +15,17 @@ namespace QRede.Modules
     {
         public GenericPopupView()
         {
-            InitializeComponent();            
+            InitializeComponent(); 
+            
         }
+
+        protected override void OnDisappearing()
+        {
+            var ViewModel = (GenericPopupViewModel)this.BindingContext;
+            ViewModel.RefuseAction?.Invoke();
+            base.OnDisappearing();
+        }
+
+
     }
 }

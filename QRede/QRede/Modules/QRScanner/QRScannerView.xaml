@@ -14,7 +14,7 @@
         <Grid>
             <qrcodeMobileForms:ZXingScannerView ScanResultCommand="{Binding ScanCommand}" 
                                                 Result="{Binding Result, Mode=TwoWay}" 
-                                                x:Name="BarcodeScanView" IsVisible="true" IsScanning="True"/>
+                                                x:Name="BarcodeScanView" IsVisible="true" IsScanning="{Binding IsScanning}"/>
 
             <Grid VerticalOptions="Center" HorizontalOptions="Center"
                   x:Name="ShapeGrid"/>

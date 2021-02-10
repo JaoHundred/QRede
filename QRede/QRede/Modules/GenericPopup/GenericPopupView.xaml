@@ -8,7 +8,8 @@
              xmlns:lang="clr-namespace:QRede.Language"
              x:Class="QRede.Modules.GenericPopupView"
                  Padding="20,200"
-                 HasSystemPadding="True">
+                 HasSystemPadding="True"
+                 >
     <Frame BackgroundColor="{DynamicResource NavigationBarColor}" Padding="0">
         <Grid BackgroundColor="{DynamicResource BackgroundColor}" RowDefinitions="auto, *, auto" Margin="10" >
 
@@ -18,8 +19,8 @@
                 <Label Text="{Binding PopupMessage}" HorizontalTextAlignment="Center" Margin="5" />
             </ScrollView>
 
-            <Button Grid.Row="2" Text="{x:Static lang:Language.Confirmation}" Command="{Binding ConfirmationCommand}" Margin="5"/>
-            <Button Grid.Row="2" Grid.Column="1" Text="{x:Static lang:Language.Refuse}" Command="{Binding RefuseCommand}" Margin="5"/>
+            <Button Grid.Row="2" Text="{Binding ConfirmationText}" Command="{Binding ConfirmationCommand}" Margin="5"/>
+            <Button Grid.Row="2" Grid.Column="1" Text="{Binding RefuseText}" Command="{Binding RefuseCommand}" Margin="5"/>
 
         </Grid>
     </Frame>

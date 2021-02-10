@@ -124,11 +124,17 @@
   <data name="Alredy" xml:space="preserve">
     <value>Já conectado</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="Conect" xml:space="preserve">
     <value>Conectar</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Sim</value>
+  </data>
+  <data name="Connecting" xml:space="preserve">
+    <value>Você deseja se conectar a  {0}?</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Modo escuro</value>

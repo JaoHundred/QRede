@@ -17,45 +17,35 @@ namespace QRede.Modules
 {
     class GenericPopupViewModel : BaseViewModel
     {
-        public GenericPopupViewModel(string Title, string Message,  Action action)
+        public GenericPopupViewModel(string Title, string Message, string confirmationText, string refuseText, Action confirmAction, Action refuseAction)
         {
             PopupTitle = Title;
             PopupMessage = Message;
-            ConfirmationAction = action;
+            ConfirmationAction = confirmAction;
+            ConfirmationText = confirmationText;
+            RefuseText = refuseText;
+            RefuseAction = refuseAction;
             ConfirmationCommand = new MvvmHelpers.Commands.AsyncCommand(OnConfirm);
             RefuseCommand = new MvvmHelpers.Commands.AsyncCommand(OnRefuse);
         }
 
-        private string popupTitle;
+        public Action RefuseAction { get; set; }
 
-        public string PopupTitle
-        {
-            get { return popupTitle; }
-            set { SetProperty(ref popupTitle, value); }
-        }
+        public string ConfirmationText { get; set; }
 
-        private string popupMessage;
+        public string RefuseText { get; set; }
 
-        public string PopupMessage
-        {
-            get { return popupMessage; }
-            set { SetProperty(ref popupMessage, value); }
-        }
+        public string  PopupTitle { get; set; }
 
-        private Action confirmationAction;
-        public Action ConfirmationAction
-        {
-            get { return confirmationAction; }
-            set { SetProperty(ref confirmationAction, value); }
-        }
+        public string PopupMessage { get; set; }
+
+        public Action ConfirmationAction { get; set; }
 
         public ICommand ConfirmationCommand { get; set; }
 
         public async Task OnConfirm()
         {
             ConfirmationAction.Invoke();
-
-            DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.DeleteComplete);
 
             await NavigationService.PopModalAsync();
         }
