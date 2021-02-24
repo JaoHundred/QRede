@@ -74,17 +74,19 @@ namespace QRede.Droid.Services
 
                         if (result != null)
                         {
-
-                            wifiSummary = new WifiSummary(BarcodeFormat.QR_CODE)
+                            if (WifiSummary.IsWifiQRCode(result.Text))
                             {
-                                EncryptedWifiString = EncryptionService.EncryptPassword(result.Text, out string key),
-                                Key = key,
-                            };
+                                wifiSummary = new WifiSummary(BarcodeFormat.QR_CODE)
+                                {
+                                    EncryptedWifiString = EncryptionService.EncryptPassword(result.Text, out string key),
+                                    Key = key,
+                                };
 
-                            //o result text é convertido para uma imagem visualmente diferente da que foi pega da galeria
-                            //para manter a imagem do QR code uniforme em QRCollectionView
-                            //(implementações diferentes de QR code podem gerar QR diferentes mas com o mesmo resultado)
-                            wifiSummary.QRCodeAsBytes = await ConvertBarcodeImageToBytes(result.Text);
+                                //o result text é convertido para uma imagem visualmente diferente da que foi pega da galeria
+                                //para manter a imagem do QR code uniforme em QRCollectionView
+                                //(implementações diferentes de QR code podem gerar QR diferentes mas com o mesmo resultado)
+                                wifiSummary.QRCodeAsBytes = await ConvertBarcodeImageToBytes(result.Text);
+                            }
                         }
                     }
                     catch (Exception ex)
