@@ -232,6 +232,15 @@ namespace QRede.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Is not a wifi QR code.
+        /// </summary>
+        public static string NotWifi {
+            get {
+                return ResourceManager.GetString("NotWifi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Password:.
         /// </summary>
         public static string Password {
