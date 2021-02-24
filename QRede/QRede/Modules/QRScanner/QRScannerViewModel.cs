@@ -61,7 +61,7 @@ namespace QRede.Modules
                 }
                 else
                 {
-                    DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.NotWifi);
+                    DependencyService.Get<IToastService>().ToastLongMessage(Language.Language.Invalid);
                     IsScanning = true;
                 }
 
