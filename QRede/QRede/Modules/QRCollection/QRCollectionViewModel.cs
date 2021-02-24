@@ -27,7 +27,7 @@ namespace QRede.Modules
             SearchCommand = new magno.AsyncCommand(OnSearch);
             SortByWordsCommand = new magno.AsyncCommand(OnSortByWords);
             ZoomImageCommand = new magno.AsyncCommand<WifiSummary>(OnZoomImage);
-            GetImageFromGalleryCommand = new MvvmHelpers.Commands.AsyncCommand(OnGetImageFromGallery);
+            GetImageFromGalleryCommand = new magno.AsyncCommand(OnGetImageFromGallery);
 
             OrderText = Language.Language.SortByAscending;
         }
