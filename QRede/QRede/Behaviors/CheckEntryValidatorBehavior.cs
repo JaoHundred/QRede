@@ -24,12 +24,30 @@ namespace QRede.Behaviors
         {
             if (sender is Entry entry)
             {
-                ValidationResult validation = await _validator.ValidateAsync( new ValidationContext<string>(e.NewTextValue));
+                ValidationResult validation = await _validator.ValidateAsync(new ValidationContext<string>(e.NewTextValue));
 
                 if (!validation.IsValid)
                 {
+                    var cList = new List<char>();
+                    foreach (var ch in e.NewTextValue.ToCharArray())
+                    {
+                        foreach (var item in GetInvalidCharacters())
+                        {
+                            if (ch == item)
+                                cList.Add(ch);
+                        }
+                    }
+
+                    var builder = new StringBuilder();
+                    foreach (var item in cList)
+                    {
+                        builder.Append(item);
+                        builder.Append(" ");
+                    }
+
                     entry.Text = e.OldTextValue == null ? string.Empty : e.OldTextValue;
-                    DependencyService.Get<IToastService>().ToastLongMessage($"{validation.Errors[0].ErrorMessage} {e.NewTextValue.Last()}");
+                    DependencyService.Get<IToastService>()
+                        .ToastLongMessage($"{validation.Errors[0].ErrorMessage} {builder}");
                 }
             }
         }
@@ -38,6 +56,15 @@ namespace QRede.Behaviors
         {
             bindable.TextChanged -= Bindable_TextChanged;
             base.OnDetachingFrom(bindable);
+        }
+
+
+        private char[] GetInvalidCharacters()
+        {
+            return new[]
+            {
+                '\\' ,
+            };
         }
     }
 }
