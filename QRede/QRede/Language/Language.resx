@@ -175,6 +175,9 @@
   <data name="LightTheme" xml:space="preserve">
     <value>Light mode</value>
   </data>
+  <data name="NotWifi" xml:space="preserve">
+    <value>Is not a wifi QR code</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password:</value>
   </data>
