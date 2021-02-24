@@ -40,7 +40,7 @@ namespace QRede.Droid.Services
             WifiManager wifiManager = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
             string info = GetCurrentWifiName();
             bool canConnect = CanConnect(wifiManager, ssid);
-            if (info != ssid && canConnect)
+            if (info != ssid)
             {
                 var wifiConfig = new WifiConfiguration
                 {

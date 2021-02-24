@@ -19,12 +19,23 @@ namespace QRede.Modules
     {
         public GenericPopupViewModel(string Title, string Message, string confirmationText, string refuseText, Action confirmAction, Action refuseAction)
         {
+            Startup(Title, Message, confirmationText, refuseText, confirmAction);
+            RefuseAction = refuseAction;
+        }
+
+        public GenericPopupViewModel(string Title, string Message, string confirmationText, string refuseText, Action confirmAction)
+        {
+            Startup(Title, Message, confirmationText, refuseText, confirmAction);
+            RefuseAction = null;
+        }
+
+        private void Startup(string Title, string Message, string confirmationText, string refuseText, Action confirmAction)
+        {
             PopupTitle = Title;
             PopupMessage = Message;
             ConfirmationAction = confirmAction;
             ConfirmationText = confirmationText;
             RefuseText = refuseText;
-            RefuseAction = refuseAction;
             ConfirmationCommand = new MvvmHelpers.Commands.AsyncCommand(OnConfirm);
             RefuseCommand = new MvvmHelpers.Commands.AsyncCommand(OnRefuse);
         }
