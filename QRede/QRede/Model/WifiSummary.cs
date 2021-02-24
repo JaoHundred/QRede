@@ -119,6 +119,18 @@ namespace QRede.Model
             return string.Empty;
         }
 
+        public static bool IsWifiQRCode(string Result)
+        {
+            if(Result.StartsWith("WIFI:"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 
     /// <summary>

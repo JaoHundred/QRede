@@ -40,20 +40,30 @@ namespace QRede.Modules
         public ICommand ScanCommand { get; private set; }
         private async Task OnScan()
         {
+            var tempo = Result.Text;
             IsScanning = false;
             if (NavigationService.CanPopupNavigate<GenericPopupViewModel>())
             {
-                string message = string.Format(Language.Language.Connecting, WifiSummary.ParseWifiString(WifiParam.S, Result.Text));
-                await NavigationService.NavigateAsync<GenericPopupViewModel>(Language.Language.Warning, message, Language.Language.Conect, Language.Language.Cancel, new Action(async () =>
-             {
-
-                 await DependencyService.Get<IConnectivityService>().Connect(Result.Text);
-
-             }),
-                new Action(() =>
+                if (WifiSummary.IsWifiQRCode(Result.Text))
                 {
+
+                    string message = string.Format(Language.Language.Connecting, WifiSummary.ParseWifiString(WifiParam.S, Result.Text));
+                    await NavigationService.NavigateAsync<GenericPopupViewModel>(Language.Language.Warning, message, Language.Language.Conect, Language.Language.Cancel, new Action(async () =>
+                    {
+
+                     await DependencyService.Get<IConnectivityService>().Connect(Result.Text);
+
+                     }),
+                    new Action(() =>
+                    {
+                        IsScanning = true;
+                    }));
+                }
+                else
+                {
+                    DependencyService.Get<IToastService>().ToastLongMessage("Não é string de wifi");
                     IsScanning = true;
-                }));
+                }
 
             }
         }
