@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:QRede.Modules"
              xmlns:lang="clr-namespace:QRede.Language"
              x:Class="QRede.Modules.GenericPopupView"
-                 Padding="20,200"
+                 Padding="20,170"
                  HasSystemPadding="True"
                  >
     <Frame BackgroundColor="{DynamicResource NavigationBarColor}" Padding="0">
