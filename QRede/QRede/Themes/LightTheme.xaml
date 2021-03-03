@@ -25,4 +25,8 @@
 
     <Color x:Key="SwitchThumbColor">#7237ae</Color>
     <!--https://www.color-hex.com/color/#7237ae-->
+
+    <Color x:Key="FrameBorderColor">#415870</Color>
+
+    <Color x:Key="FrameBackgroundColor">#B4D0ED</Color>
 </ResourceDictionary>
