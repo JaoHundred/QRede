@@ -61,7 +61,7 @@ namespace QRede.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only alfanumeric character. You can&apos;t use any character&apos;s like these &quot;,&quot;, &quot;.&quot;, &quot;:&quot;, &quot;;&quot;, &quot;/&quot;, &quot;?&quot; .
+        ///   Looks up a localized string similar to All characters but &quot;\&quot; .
         /// </summary>
         public static string A1 {
             get {

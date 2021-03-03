@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="A1" xml:space="preserve">
-    <value>Somente caracteres alfanumérico. Você não pode usar caracteres como ",", ".", ":", ";", "/", "?" </value>
+    <value>Todos os caracteres menos "\" </value>
     <comment>Resposta a pergunta 1 das Perguntas Frequentes</comment>
   </data>
   <data name="Alredy" xml:space="preserve">

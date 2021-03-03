@@ -26,8 +26,6 @@ namespace QRede
 
         public const string XamarimForms = "https://www.github.com/xamarin/Xamarin.Forms/blob/5.0.0/LICENSE";
 
-        public const string ZxingNetBindingsAndroid = "https://www.github.com/micjahn/ZXing.Net/blob/master/COPYING";
-
         public const string ZxingNetMobile = "https://www.github.com/Redth/ZXing.Net.Mobile/blob/master/LICENSE.txt";
 
         public const string ZxingNetMobileForms = "https://www.github.com/Redth/ZXing.Net.Mobile/blob/master/LICENSE.txt";

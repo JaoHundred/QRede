@@ -28,7 +28,6 @@ namespace QRede.Modules.Settings
                 new LicenseTemplate{LibName="Xamarin.Essentials", Author="Microsoft", Link= LinkLicenseConstants.XamarimEssentials },
                 new LicenseTemplate{LibName="Xamarin.FFImageLoading.Forms", Author="Daniel Luberda, Fabien Molinet", Link= LinkLicenseConstants.XamarimFFImageLoadingForms },
                 new LicenseTemplate{LibName="Xamarin.Forms", Author="Microsoft", Link= LinkLicenseConstants.XamarimForms },
-                new LicenseTemplate{LibName="ZXing.Net.Bindings.Android", Author="Michael Jahn", Link= LinkLicenseConstants.ZxingNetBindingsAndroid },
                 new LicenseTemplate{LibName="ZXing.Net.Mobile", Author="Redth", Link= LinkLicenseConstants.ZxingNetMobile },
                 new LicenseTemplate{LibName="ZXing.Net.Mobile.Forms", Author="Redth", Link= LinkLicenseConstants.ZxingNetMobileForms },
             };
