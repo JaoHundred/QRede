@@ -42,13 +42,6 @@ namespace QRede.Modules
             set { SetProperty(ref _orderText, value); }
         }
 
-        private bool _isDarkTheme;
-        public bool IsDarkTheme
-        {
-            get { return _isDarkTheme; }
-            set { SetProperty(ref _isDarkTheme, value); }
-        }
-
         public ObservableRangeCollection<WifiSummary> WifiSummaryCollection { get; set; }
 
         private List<WifiSummary> OriginalWifiSummaryCollection;
@@ -151,7 +144,6 @@ namespace QRede.Modules
         {
             await Task.Run(() =>
             {
-                IsDarkTheme = Convert.ToBoolean(Convert.ToUInt32(App.Current.Properties[App.themeKey]));
                 OriginalWifiSummaryCollection = App.liteDatabase.GetCollection<WifiSummary>().FindAll().ToList();
                 WifiSummaryCollection.ReplaceRange(OriginalWifiSummaryCollection);
             });

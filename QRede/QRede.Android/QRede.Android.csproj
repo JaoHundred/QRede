@@ -148,10 +148,7 @@
     <AndroidResource Include="Resources\drawable\ConnectIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\LupaEscuro.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\LupaClaro.png" />
+    <AndroidResource Include="Resources\drawable\Lupa.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\SplashScreen.xml" />
@@ -187,18 +184,15 @@
     <AndroidResource Include="Resources\drawable\ScannerIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\CircledPlusClaro.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\CircledPlusEscuro.png" />
+    <AndroidResource Include="Resources\drawable\CircledPlus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionQRedeAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadUnhandledDeviceExceptionQRedeAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
