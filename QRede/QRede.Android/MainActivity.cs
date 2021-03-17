@@ -6,11 +6,15 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading;
+using QRede.Services;
+using QRede.Modules;
+using Rg.Plugins.Popup.Pages;
+using System.Linq;
 
 namespace QRede.Droid
 {
-    [Activity(Theme = "@style/MainTheme",  ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
-        , ScreenOrientation= ScreenOrientation.Portrait)]
+    [Activity(Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
+        , ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -34,6 +38,22 @@ namespace QRede.Droid
             //global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public override async void OnBackPressed()
+        {
+            if (NavigationService.StackModal.Count()>0)
+            {
+                await NavigationService.PopModalAsync();
+            }
+            else if (NavigationService.CurrentPageRoute!="Home" && NavigationService.Stack.Count() ==1)
+            {
+                await NavigationService.RouteNavigationAsync("//Home");
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
         }
     }
 }

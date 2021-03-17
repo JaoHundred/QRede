@@ -12,6 +12,31 @@ namespace QRede.Services
 {
     public static class NavigationService
     {
+        public static string CurrentPageRoute
+        {
+            get
+            {
+                return Shell.Current.CurrentItem.Route;
+            }
+        }
+
+        public static IEnumerable<Page> Stack
+        {
+            get
+            {
+                return Shell.Current.Navigation.NavigationStack;
+            }
+        }
+
+
+        public static IEnumerable<Page> StackModal
+        {
+            get
+            {
+                return Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack;
+            }
+        }
+
         public static async Task NavigateAsync<T>(params object[] parameters)
         {
             string name = typeof(T).AssemblyQualifiedName + typeof(T).FullName;
@@ -55,6 +80,12 @@ namespace QRede.Services
                 return true;
             }
             return false;
+        }
+
+        public static async Task RouteNavigationAsync(string Target)
+        {
+            ShellNavigationState Navigate = new ShellNavigationState(Target);
+            await Shell.Current.GoToAsync(Navigate);
         }
     }
 }

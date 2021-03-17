@@ -51,16 +51,16 @@
         </DataTemplate>
     </Shell.ItemTemplate>
 
-    <FlyoutItem Title="{x:Static resources:Language.Home}" Icon="HomeIcon.png">
-        <ShellContent ContentTemplate="{DataTemplate Views:HomeView}"/>
+    <FlyoutItem Title="{x:Static resources:Language.Home}" Icon="HomeIcon.png" Route="Home">
+        <ShellContent ContentTemplate="{DataTemplate Views:HomeView}"/>        
     </FlyoutItem>
-    <FlyoutItem Title="{x:Static resources:Language.Scanner}" Icon="ScannerIcon.png">
+    <FlyoutItem Title="{x:Static resources:Language.Scanner}" Icon="ScannerIcon.png" Route="Scanner">
         <ShellContent ContentTemplate="{DataTemplate Views:QRScannerView}"/>
     </FlyoutItem>
-    <FlyoutItem Title="{x:Static resources:Language.SavedQRCode}" Icon="StoragedIcon.png">
+    <FlyoutItem Title="{x:Static resources:Language.SavedQRCode}" Icon="StoragedIcon.png" Route="SavedQRCode">
         <ShellContent ContentTemplate="{DataTemplate Views:QRCollectionView}"/>
     </FlyoutItem>
-    <FlyoutItem Title="{x:Static resources:Language.Settings}" Icon="ConfigIcon.png">
+    <FlyoutItem Title="{x:Static resources:Language.Settings}" Icon="ConfigIcon.png" Route="Settings">
         <ShellContent ContentTemplate="{DataTemplate Views:SettingsView}"/>
     </FlyoutItem>
 </Shell>
