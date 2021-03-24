@@ -34,3 +34,11 @@ Devido a google descontinuar o uso da API do wifimanager nas ultimas versões do
 
 - Inglês (en-US)
 - Português (pt-BR)
+
+## APP
+
+### Light Theme:
+<img src="Images/LightTheme/Home.png" width=300 height=500> <img src="Images/LightTheme/Scanner.png" width=300 height=500> <img src="Images/LightTheme/Connection.png" width=300 height=500> <img src="Images/LightTheme/Save.png" width=300 height=500> <img src="Images/LightTheme/Saved.png" width=300 height=500> <img src="Images/LightTheme/Setting.png" width=300 height=500>
+
+### Dark Theme:
+<img src="Images/DarkTheme/Home.png" width=300 height=500> <img src="Images/DarkTheme/Scanner.png" width=300 height=500> <img src="Images/DarkTheme/Connection.png" width=300 height=500> <img src="Images/DarkTheme/Save.png" width=300 height=500> <img src="Images/DarkTheme/Saved.png" width=300 height=500> <img src="Images/DarkTheme/Setting.png" width=300 height=500>
