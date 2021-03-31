@@ -46,6 +46,10 @@ namespace QRede.Droid
             {
                 await NavigationService.PopModalAsync();
             }
+            else if(AppShell.Current.FlyoutIsPresented)
+            {
+                AppShell.Current.FlyoutIsPresented = false;
+            }
             else if (NavigationService.CurrentPageRoute!="Home" && NavigationService.Stack.Count() ==1)
             {
                 await NavigationService.RouteNavigationAsync("//Home");
